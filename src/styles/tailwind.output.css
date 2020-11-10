@@ -618,6 +618,12 @@ video {
   }
 }
 
+.sidebar {
+  width: 14.5rem;
+  position: -webkit-sticky;
+  position: sticky;
+}
+
 .space-y-0 > :not(template) ~ :not(template) {
   --space-y-reverse: 0;
   margin-top: calc(0px * calc(1 - var(--space-y-reverse)));
