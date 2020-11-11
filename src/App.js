@@ -1,21 +1,58 @@
 import React from "react";
-import Sidebar from "./components/Sidebar";
-import tmdbApi from "./api/api";
-const getData = async () => {
-  const result = await tmdbApi.get("movie/550", {
-    params: {
-      append_to_response: "videos",
-    },
-  });
-  console.log(result.data);
-};
+import Sidebar from "./containers/Sidebar";
+import { Switch, Route, Redirect } from "react-router-dom";
+import Genre from "./containers/Genre";
+import Search from "./containers/Search";
+import Person from "./containers/Person";
+import Discover from "./containers/Discover";
+import Movie from "./containers/Movie";
+import NotFound from "./containers/NotFound";
 
 function App() {
-  getData();
-
   return (
     <div className="flex items-start">
       <Sidebar />
+      <Switch>
+        <Route
+          exact
+          path={process.env.PUBLIC_URL + "/"}
+          render={() => {
+            <Redirect to={process.env.PUBLIC_URL + "/dicover/Popular"} />;
+          }}
+        />
+        <Route
+          exact
+          path={process.env.PUBLIC_URL + "/genre/:name"}
+          component={Genre}
+        />
+        <Route
+          exact
+          path={process.env.PUBLIC_URL + "/discover/:name"}
+          component={Discover}
+        />
+        <Route
+          exact
+          path={process.env.PUBLIC_URL + "/search/:query"}
+          component={Search}
+        />
+        <Route
+          exact
+          path={process.env.PUBLIC_URL + "/movie/:id"}
+          component={Movie}
+        />
+        <Route
+          exact
+          path={process.env.PUBLIC_URL + "/person/:id"}
+          component={Person}
+        />
+        <Route exact path="/404" render={() => <NotFound />} />
+        <Route
+          exact
+          path={process.env.PUBLIC_URL + "/error"}
+          render={() => <NotFound />}
+        />
+        <Route render={() => <NotFound />} />
+      </Switch>
     </div>
   );
 }
