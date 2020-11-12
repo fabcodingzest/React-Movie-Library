@@ -1,11 +1,11 @@
 import React from "react";
-import { faFilm } from "@fortawesome/free-solid-svg-icons";
+import MovieContext from "../context/MoviesContext";
 
 function Genres() {
   return (
-    <div className="text-gray-700 mt-8">
-      <p className="font-semibold">Genres</p>
-    </div>
+    <MovieContext>
+      <h1></h1>
+    </MovieContext>
   );
 }
 
