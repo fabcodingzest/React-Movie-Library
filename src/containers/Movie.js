@@ -9,9 +9,10 @@ function MovieReducer(state, action) {
         movieDetails: action.movieDetails,
         castDetails: action.castDetails.cast,
         loading: false,
+        errors: [],
       };
     case "movie_detail_fetch_failed":
-      return { ...state, errors: action.payload };
+      return { ...state, errors: [action.payload.message] };
     default:
       return state;
   }
@@ -30,7 +31,7 @@ async function getMovieDetails(dispatch, movieId) {
       castDetails: castDetails.data,
     });
   } catch (error) {
-    dispatch({ type: "movie_detail_fetch_failed" });
+    dispatch({ type: "movie_detail_fetch_failed", payload: error });
   }
 }
 
@@ -46,10 +47,15 @@ function Movie({ match }) {
     getMovieDetails(dispatch, match.params.id);
   }, [match.params.id, dispatch]);
   console.log(state);
-  console.log(castDetails, movieDetails);
   return (
     <div>
-      {loading ? (
+      {errors.length !== 0 ? (
+        <h1>
+          {errors.map((error) => (
+            <p>{error}</p>
+          ))}
+        </h1>
+      ) : loading ? (
         <h1>Loading...</h1>
       ) : (
         <div>
