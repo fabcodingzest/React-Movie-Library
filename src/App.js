@@ -38,7 +38,7 @@ function App() {
         <Route
           exact
           path={process.env.PUBLIC_URL + "/movie/:id"}
-          component={Movie}
+          render={(routeProps) => <Movie {...routeProps} />}
         />
         <Route
           exact
