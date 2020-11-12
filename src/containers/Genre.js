@@ -1,11 +1,11 @@
 import React from "react";
-import MovieContext from "../context/MoviesContext";
+import { MoviesProvider } from "../context/MoviesContext";
 
 function Genres() {
   return (
-    <MovieContext>
+    <MoviesProvider>
       <h1></h1>
-    </MovieContext>
+    </MoviesProvider>
   );
 }
 

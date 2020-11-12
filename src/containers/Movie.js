@@ -1,51 +1,64 @@
-import React, { useReducer, useEffect } from "react";
+import React, { useReducer, useEffect, ErrorBoundary } from "react";
 import tmdb from "../api/api";
 
 function MovieReducer(state, action) {
   switch (action.type) {
-    case "movie_detail_loading":
-      return { ...state, loading: true };
     case "fetch_movie_details":
-      return { ...state, movieDetails: action.payload };
-    case "fetch_movie_cast":
-      return { ...state, cast: action.payload };
-    case "fetch_movie_finished":
-      return { ...state, loading: false };
+      return {
+        ...state,
+        movieDetails: action.movieDetails,
+        castDetails: action.castDetails.cast,
+        loading: false,
+      };
     case "movie_detail_fetch_failed":
-      return { ...state, errors: state.errors.push(action.payload) };
+      return { ...state, errors: action.payload };
     default:
       return state;
   }
 }
 
 async function getMovieDetails(dispatch, movieId) {
-  dispatch({ type: "movie_detail_loading" });
   try {
     const movieDetails = await tmdb.get(`/movie/${movieId}`, {
       params: { append_to_response: "videos" },
     });
-    dispatch({ type: "fetch_movie_details", payload: movieDetails });
     const castDetails = await tmdb.get(`/movie/${movieId}/credits`);
-    await dispatch({ type: "fetch_movie_cast", payload: castDetails });
-    dispatch({ type: "fetch_movie_finished" });
+    console.log(castDetails);
+    dispatch({
+      type: "fetch_movie_details",
+      movieDetails: movieDetails.data,
+      castDetails: castDetails.data,
+    });
   } catch (error) {
     dispatch({ type: "movie_detail_fetch_failed" });
   }
 }
 
-function Movie({ movieId }) {
-  const [state, dispatch] = useReducer(MovieReducer, { errors: [] });
-  const { movie, loading } = state;
-  useEffect(() => {
-    getMovieDetails(dispatch, movieId);
+function Movie({ match }) {
+  const [state, dispatch] = useReducer(MovieReducer, {
+    movieDetails: {},
+    castDetails: {},
+    loading: true,
+    errors: [],
   });
+  let { movieDetails, castDetails, loading, errors } = state;
+  useEffect(() => {
+    getMovieDetails(dispatch, match.params.id);
+  }, [match.params.id, dispatch]);
+  console.log(state);
+  console.log(castDetails, movieDetails);
   return (
     <div>
       {loading ? (
         <h1>Loading...</h1>
       ) : (
         <div>
-          <h1>{movie.title}</h1>
+          {movieDetails.title}
+          <ul>
+            {castDetails.map((item) => (
+              <li key={item.id}>{item.character}</li>
+            ))}
+          </ul>
         </div>
       )}
     </div>
