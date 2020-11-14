@@ -1,12 +1,26 @@
-import React from "react";
-import { MoviesProvider } from "../context/MoviesContext";
+import { useEffect } from "react";
+import { getGenreMovies } from "../helpers/MovieHelpers";
 
-function Genres() {
+function Genre({ match, dispatch, state }) {
+  useEffect(() => {
+    getGenreMovies(dispatch, 18, 1, "popularity.desc");
+  }, []);
+
+  console.log(state, "hey");
+  const { movies, loadingMovies } = state;
+  const { results } = movies;
+  console.log(results);
+
   return (
-    <MoviesProvider>
-      <h1></h1>
-    </MoviesProvider>
+    <div>
+      <ul>
+        {!loadingMovies &&
+          state.movies.results.map((movie) => (
+            <li key={movie.id}>{movie.title}</li>
+          ))}
+      </ul>
+    </div>
   );
 }
 
-export default Genres;
+export default Genre;

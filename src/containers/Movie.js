@@ -1,4 +1,4 @@
-import React, { useReducer, useEffect, ErrorBoundary } from "react";
+import React, { useReducer, useEffect } from "react";
 import tmdb from "../api/api";
 
 function MovieReducer(state, action) {
