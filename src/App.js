@@ -13,7 +13,7 @@ import appInit from "./helpers/AppInitializeHelpers";
 
 const INITIAL_APP_STATE = {
   loadingApp: true,
-  genres: {},
+  genres: [],
   config: {},
   errors: [],
 };
@@ -35,72 +35,78 @@ function App() {
   );
   useEffect(() => {
     appInit(appDispatch);
-    console.log(moviesState);
-    console.log(appState);
   }, []);
+
+  const { config, loadingApp, genres } = appState;
 
   return (
     <div className="flex items-start">
-      <Sidebar />
-      <Switch>
-        <Route
-          exact
-          path={process.env.PUBLIC_URL + "/"}
-          render={() => {
-            <Redirect to={process.env.PUBLIC_URL + "/dicover/Popular"} />;
-          }}
-        />
-        <Route
-          exact
-          path={process.env.PUBLIC_URL + "/genre/:name"}
-          render={(routeProps) => (
-            <Genre
-              {...routeProps}
-              dispatch={moviesDispatch}
-              state={moviesState}
+      {!loadingApp && (
+        <>
+          <Sidebar genres={genres} config={config} />
+          <Switch>
+            <Route
+              exact
+              path={process.env.PUBLIC_URL + "/"}
+              render={() => <Redirect to="/discover/Popular" />}
             />
-          )}
-        />
-        <Route
-          exact
-          path={process.env.PUBLIC_URL + "/discover/:name"}
-          render={(routeProps) => (
-            <Discover
-              {...routeProps}
-              dispatch={moviesDispatch}
-              state={moviesState}
+            <Route
+              exact
+              path={process.env.PUBLIC_URL + "/genre/:name"}
+              render={(routeProps) => (
+                <Genre
+                  {...routeProps}
+                  dispatch={moviesDispatch}
+                  movieState={moviesState}
+                  genres={genres}
+                  baseURL={config.secure_base_url}
+                />
+              )}
             />
-          )}
-        />
-        <Route
-          exact
-          path={process.env.PUBLIC_URL + "/search/:query"}
-          render={(routeProps) => (
-            <Search
-              {...routeProps}
-              dispatch={moviesDispatch}
-              state={moviesState}
+            <Route
+              exact
+              path={process.env.PUBLIC_URL + "/discover/:name"}
+              render={(routeProps) => (
+                <Discover
+                  {...routeProps}
+                  dispatch={moviesDispatch}
+                  movieState={moviesState}
+                  genres={genres}
+                  baseURL={config.secure_base_url}
+                />
+              )}
             />
-          )}
-        />
-        <Route
-          exact
-          path={process.env.PUBLIC_URL + "/movie/:id"}
-          render={(routeProps) => <Movie {...routeProps} />}
-        />
-        <Route
-          exact
-          path={process.env.PUBLIC_URL + "/person/:id"}
-          render={(routeProps) => <Person {...routeProps} />}
-        />
-        <Route exact path="/404" render={() => <NotFound />} />
-        <Route
-          exact
-          path={process.env.PUBLIC_URL + "/error"}
-          render={() => <NotFound />}
-        />
-        <Route render={() => <NotFound />} />
-      </Switch>
+            <Route
+              exact
+              path={process.env.PUBLIC_URL + "/search/:query"}
+              render={(routeProps) => (
+                <Search
+                  {...routeProps}
+                  dispatch={moviesDispatch}
+                  state={moviesState}
+                />
+              )}
+            />
+            <Route
+              exact
+              path={process.env.PUBLIC_URL + "/movie/:id"}
+              render={(routeProps) => <Movie {...routeProps} />}
+            />
+            <Route
+              exact
+              path={process.env.PUBLIC_URL + "/person/:id"}
+              render={(routeProps) => <Person {...routeProps} />}
+            />
+            <Route exact path="/404" render={() => <NotFound />} />
+            <Route
+              exact
+              path={process.env.PUBLIC_URL + "/error"}
+              render={() => <NotFound />}
+            />
+            <Route render={() => <NotFound />} />
+          </Switch>
+        </>
+      )}
     </div>
   );
 }

@@ -46,7 +46,6 @@ function Movie({ match }) {
   useEffect(() => {
     getMovieDetails(dispatch, match.params.id);
   }, [match.params.id, dispatch]);
-  console.log(state);
   return (
     <div>
       {errors.length !== 0 ? (

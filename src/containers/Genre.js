@@ -1,22 +1,27 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { getGenreMovies } from "../helpers/MovieHelpers";
 
-function Genre({ match, dispatch, state }) {
-  useEffect(() => {
-    getGenreMovies(dispatch, 18, 1, "popularity.desc");
-  }, []);
+function Genre({ match, genres, dispatch, movieState, baseURL }) {
+  const genreName = match.params.name;
 
-  console.log(state, "hey");
-  const { movies, loadingMovies } = state;
-  const { results } = movies;
-  console.log(results);
+  useEffect(() => {
+    getGenreMovies(dispatch, genres, genreName, 1, "popularity.desc");
+  }, [dispatch, genres, genreName]);
+
+  const { movies, loadingMovies } = movieState;
 
   return (
     <div>
-      <ul>
+      <ul className="flex flex-wrap">
         {!loadingMovies &&
-          state.movies.results.map((movie) => (
-            <li key={movie.id}>{movie.title}</li>
+          movies.results.map((movie) => (
+            <li key={movie.id} className="flex w-64">
+              <img
+                className="m-4"
+                src={`${baseURL}w780${movie.poster_path}`}
+                alt={movie.title}
+              />
+            </li>
           ))}
       </ul>
     </div>
