@@ -10,7 +10,11 @@ const Sidebar = ({ genres, config }) => {
       <img className="mb-10" src={MovieIllustration} alt="Movie illustration" />
       <h1 className="font-bold text-md">Discover</h1>
       {staticCategories.map((category) => (
-        <NavLink exact to={`/discover/${category}`} className="block">
+        <NavLink
+          exact
+          to={`${process.env.PUBLIC_URL}/discover/${category}`}
+          className="block"
+        >
           {category}
         </NavLink>
       ))}

@@ -12,6 +12,7 @@ function Genre({ match, genres, dispatch, movieState, baseURL }) {
 
   return (
     <div>
+      <h1 className="font-bold text-4xl">{genreName}</h1>
       <ul className="flex flex-wrap">
         {!loadingMovies &&
           movies.results.map((movie) => (
