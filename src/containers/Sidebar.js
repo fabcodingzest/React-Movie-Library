@@ -4,16 +4,19 @@ import MovieIllustration from "../assets/movietime.jpg";
 import { NavLink } from "react-router-dom";
 
 const Sidebar = ({ genres, config }) => {
+  const staticCategories = ["Popular", "Top Rated", "Upcoming"];
   return (
     <StickyBox className="sidebar border border-gray-300 p-4 min-h-screen">
       <img className="mb-10" src={MovieIllustration} alt="Movie illustration" />
-      <h1>Discover</h1>
-      <NavLink exact to="/discover/popular" className="block">
-        Popular
-      </NavLink>
-      <NavLink exact to="/genre/Crime">
-        Drama
-      </NavLink>
+      <h1 className="font-bold text-md">Discover</h1>
+      {staticCategories.map((category) => (
+        <NavLink exact to={`/discover/${category}`} className="block">
+          {category}
+        </NavLink>
+      ))}
+      <br />
+      <h1 className="font-bold text-md">Genres</h1>
+
       {genres.map((genre) => (
         <NavLink
           className="block"
