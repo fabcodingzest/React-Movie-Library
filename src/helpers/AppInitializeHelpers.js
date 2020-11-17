@@ -1,14 +1,10 @@
 import tmdb from "../api/api";
 
 function appInit(dispatch) {
-  try {
-    dispatch({ type: "app_loading" });
-    getGenres(dispatch);
-    getConfig(dispatch);
-    dispatch({ type: "app_loaded" });
-  } catch (error) {
-    dispatch({ type: "fetch_failed", payload: error });
-  }
+  dispatch({ type: "app_loading" });
+  getGenres(dispatch);
+  getConfig(dispatch);
+  dispatch({ type: "app_loaded" });
 }
 
 async function getGenres(dispatch) {

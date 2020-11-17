@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { getGenreMovies } from "../helpers/MovieHelpers";
+import { getGenreMovies } from "../helpers/MoviesHelpers";
 
 function Genre({ match, genres, dispatch, movieState, baseURL }) {
   const genreName = match.params.name;

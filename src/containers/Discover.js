@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { getDiscoverMovies } from "../helpers/MovieHelpers";
+import { getDiscoverMovies } from "../helpers/MoviesHelpers";
 
 function Discover({ dispatch, movieState, match, baseURL }) {
   const category = match.params.name;

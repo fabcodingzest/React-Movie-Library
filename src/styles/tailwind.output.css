@@ -619,9 +619,7 @@ video {
 }
 
 .sidebar {
-  width: 14.5rem;
-  position: -webkit-sticky;
-  position: sticky;
+  min-width: 14.5rem;
 }
 
 .space-y-0 > :not(template) ~ :not(template) {

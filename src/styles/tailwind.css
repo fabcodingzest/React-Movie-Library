@@ -2,8 +2,7 @@
 @tailwind components;
 
 .sidebar {
-  width: 14.5rem;
-  position: sticky;
+  min-width: 14.5rem;
 }
 
 @tailwind utilities;

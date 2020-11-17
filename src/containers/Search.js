@@ -1,10 +1,9 @@
 import { useEffect } from "react";
 import { Link } from "react-router-dom";
-import { getSearchResults } from "../helpers/MovieHelpers";
+import { getSearchResults } from "../helpers/MoviesHelpers";
 
 function Search({ dispatch, match, state, baseURL }) {
   const query = match.params.query;
-  console.log(query);
 
   useEffect(() => {
     getSearchResults(dispatch, query, 1);

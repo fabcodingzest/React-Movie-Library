@@ -1,51 +1,27 @@
 import React, { useReducer, useEffect } from "react";
-import tmdb from "../api/api";
-
-function MovieReducer(state, action) {
-  switch (action.type) {
-    case "fetch_movie_details":
-      return {
-        ...state,
-        movieDetails: action.movieDetails,
-        castDetails: action.castDetails.cast,
-        loading: false,
-        errors: [],
-      };
-    case "movie_detail_fetch_failed":
-      return { ...state, errors: [action.payload.message] };
-    default:
-      return state;
-  }
-}
-
-async function getMovieDetails(dispatch, movieId) {
-  try {
-    const movieDetails = await tmdb.get(`/movie/${movieId}`, {
-      params: { append_to_response: "videos" },
-    });
-    const castDetails = await tmdb.get(`/movie/${movieId}/credits`);
-    console.log(castDetails);
-    dispatch({
-      type: "fetch_movie_details",
-      movieDetails: movieDetails.data,
-      castDetails: castDetails.data,
-    });
-  } catch (error) {
-    dispatch({ type: "movie_detail_fetch_failed", payload: error });
-  }
-}
+import { Link } from "react-router-dom";
+import MovieReducer from "../reducers/MovieReducer";
+import { getMovieDetails } from "../helpers/MovieHelpers";
 
 function Movie({ match }) {
   const [state, dispatch] = useReducer(MovieReducer, {
+    loadingMovie: true,
     movieDetails: {},
     castDetails: {},
-    loading: true,
+    recommendedMovies: {},
     errors: [],
   });
-  let { movieDetails, castDetails, loading, errors } = state;
+  const {
+    movieDetails,
+    castDetails,
+    recommendedMovies,
+    loadingMovie,
+    errors,
+  } = state;
+  const movieId = match.params.id;
   useEffect(() => {
-    getMovieDetails(dispatch, match.params.id);
-  }, [match.params.id, dispatch]);
+    getMovieDetails(dispatch, movieId);
+  }, [movieId]);
   return (
     <div>
       {errors.length !== 0 ? (
@@ -54,18 +30,33 @@ function Movie({ match }) {
             <p>{error}</p>
           ))}
         </h1>
-      ) : loading ? (
+      ) : loadingMovie ? (
         <h1>Loading...</h1>
       ) : (
         <div>
-          <h1 className="text-2xl font-bold">
-            {movieDetails.title}
-          </h1>
+          <h1 className="text-2xl font-bold">{movieDetails.title}</h1>
           <ul>
-            {castDetails.map((item) => (
-              <li key={item.id}>{item.character}</li>
+            {castDetails.map((person) => (
+              <Link
+                key={person.id}
+                to={`${process.env.PUBLIC_URL}/person/${person.id}`}
+              >
+                <li className="m-2">{person.character}</li>
+              </Link>
             ))}
           </ul>
+          <div className="bg-pink-400">
+            hello
+            {recommendedMovies.results.map((movie) => (
+              <Link
+                key={movie.id}
+                className="block m-2"
+                to={`${process.env.PUBLIC_URL}/movie/${movie.id}`}
+              >
+                {movie.title}
+              </Link>
+            ))}
+          </div>
         </div>
       )}
     </div>

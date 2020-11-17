@@ -36,10 +36,10 @@ function App() {
   );
   useEffect(() => {
     appInit(appDispatch);
-  }, []);
+  }, [appDispatch]);
 
   const { config, loadingApp, genres } = appState;
-
+console.log('app render');
   return (
     <div className="flex items-start">
       {!loadingApp && (
