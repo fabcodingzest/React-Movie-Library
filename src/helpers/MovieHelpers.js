@@ -23,4 +23,14 @@ async function getGenreMovies(dispatch, genres, genreName, page, sort) {
   }
 }
 
-export { getDiscoverMovies, getGenreMovies };
+async function getSearchResults(dispatch, query, page) {
+  try {
+    const movies = await tmdb.get(`search/movie`, { params: { query, page } });
+    dispatch({ type: "fetch_movies", payload: movies.data });
+    console.log(movies.data);
+  } catch (error) {
+    dispatch({ type: "movies_fetch_failed", payload: error });
+  }
+}
+
+export { getDiscoverMovies, getGenreMovies, getSearchResults };
