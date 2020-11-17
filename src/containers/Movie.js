@@ -58,7 +58,9 @@ function Movie({ match }) {
         <h1>Loading...</h1>
       ) : (
         <div>
-          {movieDetails.title}
+          <h1 className="text-2xl font-bold">
+            {movieDetails.title}
+          </h1>
           <ul>
             {castDetails.map((item) => (
               <li key={item.id}>{item.character}</li>

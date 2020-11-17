@@ -9,8 +9,9 @@ const Sidebar = ({ genres, config }) => {
     <StickyBox className="sidebar border border-gray-300 p-4 min-h-screen">
       <img className="mb-10" src={MovieIllustration} alt="Movie illustration" />
       <h1 className="font-bold text-md">Discover</h1>
-      {staticCategories.map((category) => (
+      {staticCategories.map((category, index) => (
         <NavLink
+          key={index}
           exact
           to={`${process.env.PUBLIC_URL}/discover/${category}`}
           className="block"
