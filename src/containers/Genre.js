@@ -11,7 +11,7 @@ function Genre({ match, genres, dispatch, movieState, baseURL }) {
   const { movies, loadingMovies } = movieState;
 
   return (
-    <div>
+    <div className="text-gray-700">
       <h1 className="font-bold text-4xl">{genreName}</h1>
       <ul className="flex flex-wrap">
         {!loadingMovies &&
