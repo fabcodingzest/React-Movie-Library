@@ -40,7 +40,6 @@ function App() {
   }, [appDispatch]);
 
   const { config, loadingApp, genres } = appState;
-  console.log("app render");
   return (
     <div>
       {loadingApp ? (
@@ -86,12 +85,7 @@ function App() {
                 exact
                 path={process.env.PUBLIC_URL + "/search/:query"}
                 render={(routeProps) => (
-                  <Search
-                    {...routeProps}
-                    dispatch={moviesDispatch}
-                    state={moviesState}
-                    baseURL={config.secure_base_url}
-                  />
+                  <Search {...routeProps} baseURL={config.secure_base_url} />
                 )}
               />
               <Route
