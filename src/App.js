@@ -11,6 +11,7 @@ import NotFound from "./containers/NotFound";
 import MoviesReducer from "./reducers/MoviesReducer";
 import InitializeReducer from "./reducers/InitializeReducer";
 import appInit from "./helpers/AppInitializeHelpers";
+import Loader from "./components/Loader";
 
 const INITIAL_APP_STATE = {
   loadingApp: true,
@@ -39,11 +40,13 @@ function App() {
   }, [appDispatch]);
 
   const { config, loadingApp, genres } = appState;
-console.log('app render');
+  console.log("app render");
   return (
-    <div className="flex items-start">
-      {!loadingApp && (
-        <>
+    <div>
+      {loadingApp ? (
+        <Loader />
+      ) : (
+        <div className="flex items-start">
           <Sidebar genres={genres} config={config} />
           <div>
             <Searchbar />
@@ -110,7 +113,7 @@ console.log('app render');
               <Route render={() => <NotFound />} />
             </Switch>
           </div>
-        </>
+        </div>
       )}
     </div>
   );
