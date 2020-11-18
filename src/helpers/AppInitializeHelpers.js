@@ -1,9 +1,8 @@
 import tmdb from "../api/api";
 
-function appInit(dispatch) {
-  dispatch({ type: "app_loading" });
-  getGenres(dispatch);
-  getConfig(dispatch);
+async function appInit(dispatch) {
+  await getGenres(dispatch);
+  await getConfig(dispatch);
   dispatch({ type: "app_loaded" });
 }
 

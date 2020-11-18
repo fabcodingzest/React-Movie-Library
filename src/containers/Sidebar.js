@@ -7,10 +7,10 @@ const Sidebar = ({ genres, config }) => {
   console.log("ko");
   const staticCategories = ["Popular", "Top Rated", "Upcoming"];
   return (
-    <StickyBox className="border border-gray-300 p-4 min-h-screen">
+    <StickyBox className="border sidebar border-gray-300 p-4 min-h-screen">
       <div className="sidebar">
         <img
-          className="mb-10"
+          className="mb-10 w-16"
           src={MovieIllustration}
           alt="Movie illustration"
         />

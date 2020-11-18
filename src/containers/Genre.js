@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { getGenreMovies } from "../helpers/MoviesHelpers";
 
 function Genre({ match, genres, dispatch, movieState, baseURL }) {

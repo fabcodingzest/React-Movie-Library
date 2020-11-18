@@ -619,7 +619,74 @@ video {
 }
 
 .sidebar {
-  min-width: 14.5rem;
+  width: 14.5rem;
+}
+
+.loader {
+  background: 0 solid transparent;
+  border-radius: 50%;
+  position: relative;
+  width: 5rem;
+  height: 5rem;
+  -webkit-animation: spin 1s linear infinite;
+          animation: spin 1s linear infinite;
+}
+
+.loader:before,
+.loader:after {
+  content: "";
+  background: #000;
+  border-radius: 50%;
+  width: inherit;
+  height: inherit;
+  position: absolute;
+  top: 0;
+  left: 0;
+  -webkit-animation: loader 1s linear infinite;
+          animation: loader 1s linear infinite;
+  opacity: 0;
+}
+
+.loader:before {
+  -webkit-animation-delay: 1s;
+          animation-delay: 1s;
+}
+
+.loader:after {
+  -webkit-animation-delay: 0.5s;
+          animation-delay: 0.5s;
+}
+
+@-webkit-keyframes loader {
+  0% {
+    transform: scale(0);
+    opacity: 0;
+  }
+
+  50% {
+    opacity: 1;
+  }
+
+  100% {
+    transform: scale(1);
+    opacity: 0;
+  }
+}
+
+@keyframes loader {
+  0% {
+    transform: scale(0);
+    opacity: 0;
+  }
+
+  50% {
+    opacity: 1;
+  }
+
+  100% {
+    transform: scale(1);
+    opacity: 0;
+  }
 }
 
 .space-y-0 > :not(template) ~ :not(template) {

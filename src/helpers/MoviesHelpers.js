@@ -5,7 +5,7 @@ async function getDiscoverMovies(dispatch, name, page) {
     const movies = await tmdb.get(`/movie/${name}`, {
       params: { page },
     });
-    await dispatch({ type: "fetch_movies", payload: movies.data });
+    dispatch({ type: "fetch_movies", payload: movies.data });
   } catch (error) {
     dispatch({ type: "movies_fetch_failed", payload: error });
   }
