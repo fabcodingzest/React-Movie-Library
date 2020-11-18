@@ -3,7 +3,6 @@ import { getDiscoverMovies } from "../helpers/MoviesHelpers";
 
 function Discover({ dispatch, movieState, match, baseURL }) {
   const category = match.params.name;
-
   useEffect(() => {
     getDiscoverMovies(dispatch, category.toLowerCase().replace(/\s/, "_"), 1);
   }, [dispatch, category]);

@@ -1,13 +1,21 @@
+import { useReducer } from "react";
 import { useEffect } from "react";
 import { Link } from "react-router-dom";
+import MoviesReducer from "../reducers/MoviesReducer";
 import { getSearchResults } from "../helpers/MoviesHelpers";
 
-function Search({ dispatch, match, state, baseURL }) {
+function Search({ match, baseURL }) {
   const query = match.params.query;
+
+  const [state, dispatch] = useReducer(MoviesReducer, {
+    movies: {},
+    loadingMovies: true,
+    errors: [],
+  });
 
   useEffect(() => {
     getSearchResults(dispatch, query, 1);
-  }, [dispatch, query]);
+  }, [query]);
 
   const { movies, loadingMovies } = state;
   return (
