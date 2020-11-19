@@ -8,14 +8,15 @@ function Search({ match, baseURL }) {
   const query = match.params.query;
 
   const [state, dispatch] = useReducer(MoviesReducer, {
-    movies: {},
     loadingMovies: true,
+    movies: {},
     errors: [],
   });
 
   useEffect(() => {
     getSearchResults(dispatch, query, 1);
   }, [query]);
+  console.log("search");
 
   const { movies, loadingMovies } = state;
   return (

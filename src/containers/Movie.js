@@ -22,6 +22,7 @@ function Movie({ match }) {
   useEffect(() => {
     getMovieDetails(dispatch, movieId);
   }, [movieId]);
+  console.log("movie");
   return (
     <div>
       {errors.length !== 0 ? (
