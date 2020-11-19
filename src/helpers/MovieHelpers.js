@@ -1,16 +1,15 @@
 import tmdb from "../api/api";
 
 async function getMovieDetails(dispatch, movieId) {
-  dispatch({ type: "movie_loading" });
   try {
     const movie = await tmdb.get(`movie/${movieId}`);
-    dispatch({ type: "fetch_movie", payload: movie.data });
+    await dispatch({ type: "fetch_movie", payload: movie.data });
+    const castDetails = await tmdb.get(`movie/${movieId}/credits`);
+    await dispatch({ type: "fetch_cast", payload: castDetails.data.cast });
     const recommendedMovies = await tmdb.get(
       `movie/${movieId}/recommendations`
     );
-    const castDetails = await tmdb.get(`movie/${movieId}/credits`);
-    dispatch({ type: "fetch_cast", payload: castDetails.data.cast });
-    dispatch({
+    await dispatch({
       type: "fetch_movie_recommendations",
       payload: recommendedMovies.data,
     });
