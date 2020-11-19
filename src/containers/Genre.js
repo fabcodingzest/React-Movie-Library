@@ -1,14 +1,17 @@
-import { useEffect } from "react";
+import { useEffect, useReducer } from "react";
 import { getGenreMovies } from "../helpers/MoviesHelpers";
+import MoviesReducer from "../reducers/MoviesReducer";
+import {INITIAL_MOVIES_STATE} from "../constants/state";
 
-function Genre({ match, genres, dispatch, movieState, baseURL }) {
+function Genre({ match, genres, baseURL }) {
   const genreName = match.params.name;
-
+  const [state, dispatch] = useReducer(MoviesReducer, INITIAL_MOVIES_STATE);
+  console.log("genre");
   useEffect(() => {
     getGenreMovies(dispatch, genres, genreName, 1, "popularity.desc");
-  }, [dispatch, genres, genreName]);
+  }, [ genres, genreName]);
 
-  const { movies, loadingMovies } = movieState;
+  const { movies, loadingMovies } = state;
 
   return (
     <div className="text-gray-700">
