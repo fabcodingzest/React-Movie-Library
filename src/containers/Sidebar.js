@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 import ListItem from "../components/ListItem";
 import { faGift, faFire, faChartLine } from "@fortawesome/free-solid-svg-icons";
 
-const Sidebar = ({ genres, config }) => {
+const Sidebar = ({ genres, selected, setSelected }) => {
   const staticCategories = ["Popular", "Top Rated", "Upcoming"];
   const staticIcons = [faGift, faFire, faChartLine];
   console.log("sidebar");
@@ -19,10 +19,10 @@ const Sidebar = ({ genres, config }) => {
       />
       <div className="sidebar p-4">
         <h1 className="text-gray-700 font-bold text-lg">Discover</h1>
-        {renderStatic(staticCategories, staticIcons)}
+        {renderStatic(staticCategories, staticIcons, selected)}
         <br />
         <h1 className="text-gray-700 font-bold text-lg">Genres</h1>
-        {renderGenres(genres)}
+        {renderGenres(genres, selected)}
       </div>
       <p className="flex justify-center items-center mt-4 text-md">
         &copy; Copyright
@@ -39,22 +39,26 @@ const Sidebar = ({ genres, config }) => {
   );
 };
 
-const renderStatic = (categories, staticIcons) => {
+const renderStatic = (categories, staticIcons, selected) => {
   return categories.map((category, index) => (
     <Link v key={index} to={`${process.env.PUBLIC_URL}/discover/${category}`}>
-      <ListItem text={category} icon={staticIcons[index]} />
+      <ListItem
+        text={category}
+        icon={staticIcons[index]}
+        selected={selected === category}
+      />
     </Link>
   ));
 };
 
-const renderGenres = (genres) => {
+const renderGenres = (genres, selected) => {
   return genres.map((genre) => (
     <Link
       className="block"
       key={genre.id}
       to={`${process.env.PUBLIC_URL}/genre/${genre.name}`}
     >
-      <ListItem text={genre.name} />
+      <ListItem text={genre.name} selected={selected === genre.name} />
     </Link>
   ));
 };

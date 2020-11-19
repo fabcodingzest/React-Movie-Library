@@ -1,15 +1,16 @@
 import { useEffect, useReducer } from "react";
 import { getGenreMovies } from "../helpers/MoviesHelpers";
 import MoviesReducer from "../reducers/MoviesReducer";
-import {INITIAL_MOVIES_STATE} from "../constants/state";
+import { INITIAL_MOVIES_STATE } from "../constants/state";
 
-function Genre({ match, genres, baseURL }) {
+function Genre({ match, genres, baseURL, setSelected }) {
   const genreName = match.params.name;
   const [state, dispatch] = useReducer(MoviesReducer, INITIAL_MOVIES_STATE);
   console.log("genre");
   useEffect(() => {
+    setSelected(genreName);
     getGenreMovies(dispatch, genres, genreName, 1, "popularity.desc");
-  }, [ genres, genreName]);
+  }, [genres, genreName, setSelected]);
 
   const { movies, loadingMovies } = state;
 

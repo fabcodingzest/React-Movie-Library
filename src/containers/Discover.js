@@ -5,14 +5,15 @@ import { getDiscoverMovies } from "../helpers/MoviesHelpers";
 import MoviesReducer from "../reducers/MoviesReducer";
 import { INITIAL_MOVIES_STATE } from "../constants/state";
 
-function Discover({ match, baseURL }) {
+function Discover({ match, baseURL, setSelected }) {
   const category = match.params.name;
   console.log("discover");
   const [state, dispatch] = useReducer(MoviesReducer, INITIAL_MOVIES_STATE);
 
   useEffect(() => {
+    setSelected(category);
     getDiscoverMovies(dispatch, category.toLowerCase().replace(/\s/, "_"), 1);
-  }, [dispatch, category]);
+  }, [dispatch, category, setSelected]);
 
   const { movies, loadingMovies } = state;
   return (

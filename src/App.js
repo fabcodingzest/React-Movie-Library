@@ -1,4 +1,4 @@
-import React, { useReducer, useEffect } from "react";
+import React, { useReducer, useEffect, useState } from "react";
 import Sidebar from "./containers/Sidebar";
 import { Switch, Route, Redirect } from "react-router-dom";
 import Genre from "./containers/Genre";
@@ -15,6 +15,7 @@ import Loader from "./components/Loader";
 
 function App() {
   console.log("App render outside useEffect");
+  const [selected, setSelected] = useState("Popular");
   const [appState, appDispatch] = useReducer(
     InitializeReducer,
     INITIAL_APP_STATE
@@ -30,7 +31,11 @@ function App() {
         <Loader />
       ) : (
         <div className="flex items-start">
-          <Sidebar genres={genres} config={config} />
+          <Sidebar
+            genres={genres}
+            selected={selected}
+            setSelected={setSelected}
+          />
           <div className="w-full mx-4 md:mx-8">
             <Searchbar />
             <Switch>
@@ -47,6 +52,7 @@ function App() {
                     {...routeProps}
                     genres={genres}
                     baseURL={config.secure_base_url}
+                    setSelected={setSelected}
                   />
                 )}
               />
@@ -58,6 +64,7 @@ function App() {
                     {...routeProps}
                     genres={genres}
                     baseURL={config.secure_base_url}
+                    setSelected={setSelected}
                   />
                 )}
               />
