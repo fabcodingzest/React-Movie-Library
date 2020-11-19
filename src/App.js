@@ -8,29 +8,13 @@ import Discover from "./containers/Discover";
 import Movie from "./containers/Movie";
 import Searchbar from "./components/Searchbar";
 import NotFound from "./containers/NotFound";
-import MoviesReducer from "./reducers/MoviesReducer";
+import { INITIAL_APP_STATE } from "./constants/state";
 import InitializeReducer from "./reducers/InitializeReducer";
 import appInit from "./helpers/AppInitializeHelpers";
 import Loader from "./components/Loader";
 
-const INITIAL_APP_STATE = {
-  loadingApp: true,
-  genres: [],
-  config: {},
-  errors: [],
-};
-
-const INITIAL_MOVIES_STATE = {
-  movies: {},
-  loadingMovies: true,
-  errors: [],
-};
-
 function App() {
-  const [moviesState, moviesDispatch] = useReducer(
-    MoviesReducer,
-    INITIAL_MOVIES_STATE
-  );
+  console.log("App render outside useEffect");
   const [appState, appDispatch] = useReducer(
     InitializeReducer,
     INITIAL_APP_STATE
@@ -47,7 +31,7 @@ function App() {
       ) : (
         <div className="flex items-start">
           <Sidebar genres={genres} config={config} />
-          <div>
+          <div className="w-full mx-4 md:mx-8">
             <Searchbar />
             <Switch>
               <Route
@@ -61,8 +45,6 @@ function App() {
                 render={(routeProps) => (
                   <Genre
                     {...routeProps}
-                    dispatch={moviesDispatch}
-                    movieState={moviesState}
                     genres={genres}
                     baseURL={config.secure_base_url}
                   />
@@ -74,8 +56,6 @@ function App() {
                 render={(routeProps) => (
                   <Discover
                     {...routeProps}
-                    dispatch={moviesDispatch}
-                    movieState={moviesState}
                     genres={genres}
                     baseURL={config.secure_base_url}
                   />
@@ -91,18 +71,19 @@ function App() {
               <Route
                 exact
                 path={process.env.PUBLIC_URL + "/movie/:id"}
+                baseURL={config.secure_base_url}
                 render={(routeProps) => <Movie {...routeProps} />}
               />
               <Route
                 exact
                 path={process.env.PUBLIC_URL + "/person/:id"}
+                baseURL={config.secure_base_url}
                 render={(routeProps) => <Person {...routeProps} />}
               />
-              <Route exact path="/404" render={() => <NotFound />} />
               <Route
                 exact
                 path={process.env.PUBLIC_URL + "/error"}
-                render={() => <NotFound />}
+                component={NotFound}
               />
               <Route render={() => <NotFound />} />
             </Switch>
