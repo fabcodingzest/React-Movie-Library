@@ -11,7 +11,7 @@ function Searchbar({ history }) {
     history.push(`${process.env.PUBLIC_URL}/search/${input}`);
   };
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit} className="mt-6 w-full flex justify-center">
       <input
         type="text"
         placeholder="Search for a movie..."

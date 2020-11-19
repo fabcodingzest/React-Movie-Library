@@ -23,6 +23,7 @@ function Person({ match }) {
   useEffect(() => {
     getPersonComponent(dispatch, personId, 1, "popularity.desc");
   }, [personId]);
+  console.log("person");
 
   return (
     <div>
