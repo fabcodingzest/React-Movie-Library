@@ -24,13 +24,11 @@ function Search({ match, baseURL }) {
   return (
     <div className="pt-24">
       <h1>Search</h1>
-      <ul className="flex flex-wrap">
-        {loadingMovies ? (
-          <Loader />
-        ) : (
-          <MovieList movies={movies} baseURL={baseURL} />
-        )}
-      </ul>
+      {loadingMovies ? (
+        <Loader />
+      ) : (
+        <MovieList movies={movies} baseURL={baseURL} />
+      )}
     </div>
   );
 }
