@@ -15,7 +15,7 @@ function Searchbar({ history }) {
       <input
         type="text"
         placeholder="Search for a movie..."
-        className="ml-3 px-4 py-2 rounded-full w-1/2 bg-gray-300"
+        className="ml-3 px-4 py-2 rounded-full w-1/2 bg-gray-100"
         onChange={handleInput}
       />
     </form>

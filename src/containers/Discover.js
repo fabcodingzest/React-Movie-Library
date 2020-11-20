@@ -21,8 +21,10 @@ function Discover({ match, baseURL, setSelected }) {
       {loadingMovies ? (
         <Loader />
       ) : (
-        <div className="text-gray-700 mt-8">
-          <h1 className="font-semibold text-4xl">{category}</h1>
+        <div className="text-gray-700 my-8">
+          <h1 className="text-4xl w-full">
+            {category}
+          </h1>
           <MovieList movies={movies} baseURL={baseURL} />
         </div>
       )}

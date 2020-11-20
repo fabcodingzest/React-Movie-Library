@@ -7,11 +7,18 @@ module.exports = {
     "public/**/*.html",
   ],
   theme: {
-    extend: {},
+    extend: {
+      gridTemplateColumns: {
+        "auto-sm": "repeat(auto-fit, minmax(10rem, 16rem))",
+        "auto-lg": "repeat(auto-fit, minmax(10rem, 25rem))",
+      },
+    },
   },
   variants: {
     extend: {
+      borderRadius: ["hover", "focus", "active", "responsive"],
       borderStyle: ["hover", "focus", "active", "responsive"],
+      gridTemplateColumns: ["hover", "focus", "active", "responsive"],
     },
   },
   plugins: [],
