@@ -41,7 +41,7 @@ const Sidebar = ({ genres, selected, setSelected }) => {
 
 const renderStatic = (categories, staticIcons, selected) => {
   return categories.map((category, index) => (
-    <Link v key={index} to={`${process.env.PUBLIC_URL}/discover/${category}`}>
+    <Link key={index} to={`${process.env.PUBLIC_URL}/discover/${category}`}>
       <ListItem
         text={category}
         icon={staticIcons[index]}
