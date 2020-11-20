@@ -1,8 +1,10 @@
 import tmdb from "../api/api";
 
-function getPersonComponent(dispatch, personId, page, sort) {
-  getMovieDetails(dispatch, personId);
-  getRecommendedMovies(dispatch, personId, page, sort);
+async function getPersonComponent(dispatch, personId, page, sort) {
+  dispatch({ type: "fetch_person_loaded" });
+  await getMovieDetails(dispatch, personId);
+  await getRecommendedMovies(dispatch, personId, page, sort);
+  dispatch({ type: "fetch_person_loading" });
 }
 
 async function getMovieDetails(dispatch, personId) {

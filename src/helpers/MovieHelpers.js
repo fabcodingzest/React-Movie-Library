@@ -1,6 +1,7 @@
 import tmdb from "../api/api";
 
 async function getMovieDetails(dispatch, movieId) {
+  dispatch({ type: "movie_loading" });
   try {
     const movie = await tmdb.get(`movie/${movieId}`);
     await dispatch({ type: "fetch_movie", payload: movie.data });

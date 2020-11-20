@@ -1,5 +1,7 @@
 function MovieReducer(state, action) {
   switch (action.type) {
+    case "movie_loading":
+      return { ...state, loadingMovie: true };
     case "fetch_movie":
       return { ...state, movieDetails: action.payload };
     case "fetch_cast":
