@@ -28,16 +28,20 @@ function App() {
   return (
     <div>
       {loadingApp ? (
-        <Loader />
+        <div className="h-screen w-screen">
+          <Loader />
+        </div>
       ) : (
-        <div className="flex items-start">
+        <div className="w-full min-h-screen flex items-start">
           <Sidebar
             genres={genres}
             selected={selected}
             setSelected={setSelected}
           />
-          <div className="w-full mx-4 md:mx-8">
-            <Searchbar />
+          <div className="w-full min-h-screen mx-4 md:mx-8 relative">
+            <div className="w-full absolute top-0">
+              <Searchbar />
+            </div>
             <Switch>
               <Route
                 exact

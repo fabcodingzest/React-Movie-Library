@@ -17,7 +17,7 @@ function Discover({ match, baseURL, setSelected }) {
 
   const { movies, loadingMovies } = state;
   return (
-    <div className="w-full">
+    <div className="w-full min-h-screen pt-24">
       {loadingMovies ? (
         <Loader />
       ) : (
