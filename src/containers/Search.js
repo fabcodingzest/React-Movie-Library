@@ -22,12 +22,13 @@ function Search({ match, baseURL }) {
 
   const { movies, loadingMovies } = state;
   return (
-    <div className="pt-24">
-      <h1>Search</h1>
+    <div className="text-gray-600 pt-24">
+      <h1 className="text-3xl w-full font-thin uppercase ml-4">{query}</h1>
+      <p className="text-sm uppercase font-bold ml-4">Search Results</p>
       {loadingMovies ? (
         <Loader />
       ) : (
-        <MovieList movies={movies} baseURL={baseURL} />
+        <MovieList movies={movies} baseURL={baseURL} name={query} />
       )}
     </div>
   );

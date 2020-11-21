@@ -17,8 +17,9 @@ function Genre({ match, genres, baseURL, setSelected }) {
   const { movies, loadingMovies } = state;
 
   return (
-    <div className="pt-24">
-      <h1 className="font-bold text-4xl">{genreName}</h1>
+    <div className="pt-24 text-gray-600">
+      <h1 className="text-3xl w-full font-thin uppercase ml-4">{genreName}</h1>
+      <p className="text-sm uppercase font-bold ml-4">movies</p>
       {loadingMovies ? (
         <div className="w-full">
           <Loader />

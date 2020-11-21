@@ -17,14 +17,13 @@ function Discover({ match, baseURL, setSelected }) {
 
   const { movies, loadingMovies } = state;
   return (
-    <div className="w-full min-h-screen pt-24">
+    <div className="text-gray-600 pt-24">
+      <h1 className="text-3xl w-full font-thin uppercase ml-4">{category}</h1>
+      <p className="text-sm uppercase font-bold ml-4">movies</p>
       {loadingMovies ? (
         <Loader />
       ) : (
         <div className="text-gray-700 my-8">
-          <h1 className="text-4xl w-full">
-            {category}
-          </h1>
           <MovieList movies={movies} baseURL={baseURL} />
         </div>
       )}
