@@ -39,9 +39,7 @@ function App() {
             setSelected={setSelected}
           />
           <div className="w-full min-h-screen mx-4 md:mx-8 relative">
-            <div className="w-full absolute top-0">
               <Searchbar />
-            </div>
             <Switch>
               <Route
                 exact
