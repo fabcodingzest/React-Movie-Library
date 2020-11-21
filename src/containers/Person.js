@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import getPersonComponent from "../helpers/PersonHelper";
 import PersonReducer from "../reducers/PersonReducer";
 
-function Person({ match }) {
+function Person({ match, baseURL, setSelected }) {
   const personId = match.params.id;
   const [state, dispatch] = useReducer(PersonReducer, {
     loadingPerson: true,
@@ -21,8 +21,9 @@ function Person({ match }) {
     errors,
   } = state;
   useEffect(() => {
+    setSelected("");
     getPersonComponent(dispatch, personId, 1, "popularity.desc");
-  }, [personId]);
+  }, [personId, setSelected]);
   console.log("person");
 
   return (

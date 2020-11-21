@@ -39,7 +39,7 @@ function App() {
             setSelected={setSelected}
           />
           <div className="w-full min-h-screen mx-4 md:mx-8 relative">
-              <Searchbar />
+            <Searchbar />
             <Switch>
               <Route
                 exact
@@ -74,20 +74,36 @@ function App() {
                 exact
                 path={process.env.PUBLIC_URL + "/search/:query"}
                 render={(routeProps) => (
-                  <Search {...routeProps} baseURL={config.secure_base_url} />
+                  <Search
+                    {...routeProps}
+                    baseURL={config.secure_base_url}
+                    setSelected={setSelected}
+                  />
                 )}
               />
               <Route
                 exact
                 path={process.env.PUBLIC_URL + "/movie/:id"}
                 baseURL={config.secure_base_url}
-                render={(routeProps) => <Movie {...routeProps} />}
+                render={(routeProps) => (
+                  <Movie
+                    {...routeProps}
+                    setSelected={setSelected}
+                    baseURL={config.secure_base_url}
+                  />
+                )}
               />
               <Route
                 exact
                 path={process.env.PUBLIC_URL + "/person/:id"}
                 baseURL={config.secure_base_url}
-                render={(routeProps) => <Person {...routeProps} />}
+                render={(routeProps) => (
+                  <Person
+                    {...routeProps}
+                    setSelected={setSelected}
+                    baseURL={config.secure_base_url}
+                  />
+                )}
               />
               <Route
                 exact

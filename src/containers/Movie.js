@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import MovieReducer from "../reducers/MovieReducer";
 import { getMovieDetails } from "../helpers/MovieHelpers";
 
-function Movie({ match }) {
+function Movie({ match, baseURL, setSelected }) {
   const [state, dispatch] = useReducer(MovieReducer, {
     loadingMovie: true,
     movieDetails: {},
@@ -20,8 +20,9 @@ function Movie({ match }) {
   } = state;
   const movieId = match.params.id;
   useEffect(() => {
+    setSelected("");
     getMovieDetails(dispatch, movieId);
-  }, [movieId]);
+  }, [movieId, setSelected]);
   console.log("movie");
   return (
     <div>

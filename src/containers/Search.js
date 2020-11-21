@@ -6,7 +6,7 @@ import { getSearchResults } from "../helpers/MoviesHelpers";
 import Loader from "../components/Loader";
 import MovieList from "../components/MovieList";
 
-function Search({ match, baseURL }) {
+function Search({ match, baseURL, setSelected }) {
   const query = match.params.query;
 
   const [state, dispatch] = useReducer(MoviesReducer, {
@@ -16,8 +16,9 @@ function Search({ match, baseURL }) {
   });
 
   useEffect(() => {
+    setSelected("");
     getSearchResults(dispatch, query, 1);
-  }, [query]);
+  }, [query, setSelected]);
   console.log("search");
 
   const { movies, loadingMovies } = state;
