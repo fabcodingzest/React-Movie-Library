@@ -1,8 +1,6 @@
 import React from "react";
-import Stars from "react-rating";
-import { faStar } from "@fortawesome/free-solid-svg-icons";
-import { faStar as star } from "@fortawesome/free-regular-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import Rating from "./Rating";
+
 function MovieList({ movies, baseURL }) {
   return (
     <div className="grid grid-cols-auto-sm md:grid-cols-lg gap-x-2 xl:gap-x-8 gap-y-16 place-content-between justify-evenly mt-8">
@@ -16,14 +14,9 @@ function MovieList({ movies, baseURL }) {
             alt={movie.title}
             className="sm:h-96 rounded-lg hover:rounded-br-none hover:rounded-bl-none object-cover shadow-xl hover:shadow-2xl"
           />
-          <div className="text-center text-sm md:text-md p-2">
+          <div className="w-full h-full my-auto text-center text-sm md:text-md py-4 px-2 flex flex-col justify-around">
             <p>{movie.title}</p>
-            <Stars
-              emptySymbol={<FontAwesomeIcon icon={star} />}
-              fullSymbol={<FontAwesomeIcon icon={faStar} />}
-              initialRating={movie.vote_average / 2}
-              readonly
-            />
+            <Rating number={movie.vote_average} />
           </div>
         </div>
       ))}
