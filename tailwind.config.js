@@ -9,8 +9,8 @@ module.exports = {
   theme: {
     extend: {
       gridTemplateColumns: {
-        "auto-sm": "repeat(auto-fit, minmax(10rem, 16rem))",
-        "auto-lg": "repeat(auto-fit, minmax(10rem, 25rem))",
+        "auto-sm": "repeat(auto-fit, minmax(8rem, 12rem))",
+        "auto-lg": "repeat(auto-fit, minmax(10rem, 16rem))",
       },
     },
   },

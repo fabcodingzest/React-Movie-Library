@@ -23,7 +23,7 @@ function Search({ match, baseURL, setSelected }) {
 
   const { movies, loadingMovies } = state;
   return (
-    <div className="text-gray-600 pt-24">
+    <div className="text-gray-600 pt-24 min-h-screen flex flex-col justify-center">
       <h1 className="text-3xl w-full font-thin uppercase ml-4">{query}</h1>
       <p className="text-sm uppercase font-bold ml-4">Search Results</p>
       {loadingMovies ? (

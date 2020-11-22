@@ -28,7 +28,7 @@ function App() {
   return (
     <div>
       {loadingApp ? (
-        <div className="h-screen w-screen">
+        <div className="h-screen w-full flex justify-center items-center my-auto">
           <Loader />
         </div>
       ) : (

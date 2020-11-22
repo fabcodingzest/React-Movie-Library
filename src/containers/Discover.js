@@ -1,5 +1,6 @@
 import { useEffect, useReducer } from "react";
 import MovieList from "../components/MovieList";
+import NotFound from "../containers/NotFound";
 import Loader from "../components/Loader";
 import { getDiscoverMovies } from "../helpers/MoviesHelpers";
 import MoviesReducer from "../reducers/MoviesReducer";
@@ -15,9 +16,14 @@ function Discover({ match, baseURL, setSelected }) {
     getDiscoverMovies(dispatch, category.toLowerCase().replace(/\s/, "_"), 1);
   }, [dispatch, category, setSelected]);
 
-  const { movies, loadingMovies } = state;
+  const { movies, loadingMovies, errors } = state;
+
+  if (errors.length !== 0) {
+    return <NotFound />;
+  }
+
   return (
-    <div className="text-gray-600 pt-24">
+    <div className="text-gray-600 pt-24 min-h-screen flex flex-col justify-center">
       <h1 className="text-3xl w-full font-thin uppercase ml-4">{category}</h1>
       <p className="text-sm uppercase font-bold ml-4">movies</p>
       {loadingMovies ? (

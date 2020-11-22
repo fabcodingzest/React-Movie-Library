@@ -17,13 +17,11 @@ function Genre({ match, genres, baseURL, setSelected }) {
   const { movies, loadingMovies } = state;
 
   return (
-    <div className="pt-24 text-gray-600">
+    <div className="pt-24 text-gray-600 min-h-screen flex flex-col justify-center">
       <h1 className="text-3xl w-full font-thin uppercase ml-4">{genreName}</h1>
       <p className="text-sm uppercase font-bold ml-4">movies</p>
       {loadingMovies ? (
-        <div className="w-full">
           <Loader />
-        </div>
       ) : (
         <MovieList movies={movies} baseURL={baseURL} />
       )}
