@@ -10,3 +10,19 @@ export const INITIAL_MOVIES_STATE = {
   movies: {},
   errors: [],
 };
+
+export const INITIAL_PERSON_STATE = {
+  loadingPerson: true,
+  loadingRecommendations: true,
+  personDetails: {},
+  errors: [],
+  recommendationError: [],
+};
+
+export const INITIAL_MOVIE_STATE = {
+  loadingMovie: true,
+  movieDetails: {},
+  castDetails: {},
+  recommendedMovies: {},
+  errors: [],
+};
