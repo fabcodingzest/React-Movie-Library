@@ -24,97 +24,106 @@ function App() {
     appInit(appDispatch);
   }, [appDispatch]);
 
-  const { config, loadingApp, genres } = appState;
+  const { config, loadingApp, genres, errors } = appState;
+  if (loadingApp) {
+    return (
+      <div className="h-screen w-full flex justify-center items-center my-auto">
+        <Loader />
+      </div>
+    );
+  }
+  if (errors.length !== 0) {
+    return (
+      <div className="w-screen h-screen text-gray-600">
+        <NotFound title="Opps!" subtitle="Something went wrong..." />
+      </div>
+    );
+  }
+
   return (
-    <div>
-      {loadingApp ? (
-        <div className="h-screen w-full flex justify-center items-center my-auto">
-          <Loader />
+    <div className="text-gray-600">
+      <div className="w-full min-h-screen flex items-start">
+        <Sidebar
+          genres={genres}
+          selected={selected}
+          setSelected={setSelected}
+        />
+        <div className="w-full min-h-screen mx-4 md:mx-8 relative">
+          <Searchbar />
+          <Switch>
+            <Route
+              exact
+              path={process.env.PUBLIC_URL + "/"}
+              render={() => <Redirect to="/discover/Popular" />}
+            />
+            <Route
+              exact
+              path={process.env.PUBLIC_URL + "/genre/:name"}
+              render={(routeProps) => (
+                <Genre
+                  {...routeProps}
+                  genres={genres}
+                  baseURL={config.secure_base_url}
+                  setSelected={setSelected}
+                />
+              )}
+            />
+            <Route
+              exact
+              path={process.env.PUBLIC_URL + "/discover/:name"}
+              render={(routeProps) => (
+                <Discover
+                  {...routeProps}
+                  genres={genres}
+                  baseURL={config.secure_base_url}
+                  setSelected={setSelected}
+                />
+              )}
+            />
+            <Route
+              exact
+              path={process.env.PUBLIC_URL + "/search/:query"}
+              render={(routeProps) => (
+                <Search
+                  {...routeProps}
+                  baseURL={config.secure_base_url}
+                  setSelected={setSelected}
+                />
+              )}
+            />
+            <Route
+              exact
+              path={process.env.PUBLIC_URL + "/movie/:id"}
+              baseURL={config.secure_base_url}
+              render={(routeProps) => (
+                <Movie
+                  {...routeProps}
+                  setSelected={setSelected}
+                  baseURL={config.secure_base_url}
+                />
+              )}
+            />
+            <Route
+              exact
+              path={process.env.PUBLIC_URL + "/person/:id"}
+              baseURL={config.secure_base_url}
+              render={(routeProps) => (
+                <Person
+                  {...routeProps}
+                  setSelected={setSelected}
+                  baseURL={config.secure_base_url}
+                />
+              )}
+            />
+            <Route
+              exact
+              path={process.env.PUBLIC_URL + "/error"}
+              component={NotFound}
+            />
+            <Route render={() => <NotFound />} />
+          </Switch>
         </div>
-      ) : (
-        <div className="w-full min-h-screen flex items-start">
-          <Sidebar
-            genres={genres}
-            selected={selected}
-            setSelected={setSelected}
-          />
-          <div className="w-full min-h-screen mx-4 md:mx-8 relative">
-            <Searchbar />
-            <Switch>
-              <Route
-                exact
-                path={process.env.PUBLIC_URL + "/"}
-                render={() => <Redirect to="/discover/Popular" />}
-              />
-              <Route
-                exact
-                path={process.env.PUBLIC_URL + "/genre/:name"}
-                render={(routeProps) => (
-                  <Genre
-                    {...routeProps}
-                    genres={genres}
-                    baseURL={config.secure_base_url}
-                    setSelected={setSelected}
-                  />
-                )}
-              />
-              <Route
-                exact
-                path={process.env.PUBLIC_URL + "/discover/:name"}
-                render={(routeProps) => (
-                  <Discover
-                    {...routeProps}
-                    genres={genres}
-                    baseURL={config.secure_base_url}
-                    setSelected={setSelected}
-                  />
-                )}
-              />
-              <Route
-                exact
-                path={process.env.PUBLIC_URL + "/search/:query"}
-                render={(routeProps) => (
-                  <Search
-                    {...routeProps}
-                    baseURL={config.secure_base_url}
-                    setSelected={setSelected}
-                  />
-                )}
-              />
-              <Route
-                exact
-                path={process.env.PUBLIC_URL + "/movie/:id"}
-                baseURL={config.secure_base_url}
-                render={(routeProps) => (
-                  <Movie
-                    {...routeProps}
-                    setSelected={setSelected}
-                    baseURL={config.secure_base_url}
-                  />
-                )}
-              />
-              <Route
-                exact
-                path={process.env.PUBLIC_URL + "/person/:id"}
-                baseURL={config.secure_base_url}
-                render={(routeProps) => (
-                  <Person
-                    {...routeProps}
-                    setSelected={setSelected}
-                    baseURL={config.secure_base_url}
-                  />
-                )}
-              />
-              <Route
-                exact
-                path={process.env.PUBLIC_URL + "/error"}
-                component={NotFound}
-              />
-              <Route render={() => <NotFound />} />
-            </Switch>
-          </div>
-        </div>
-      )}
+      </div>
     </div>
   );
 }
