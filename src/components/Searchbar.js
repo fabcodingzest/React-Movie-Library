@@ -37,7 +37,7 @@ function Searchbar({ history }) {
   };
   console.log("searchbar");
   return (
-    <div className="w-full absolute top-0 flex justify-end">
+    <div className="w-full absolute top-0 flex justify-end py-4">
       <form
         ref={formRef}
         onClick={() => {
@@ -45,7 +45,7 @@ function Searchbar({ history }) {
           inputRef.current.focus();
         }}
         onSubmit={handleSubmit}
-        className={`transition-all ease-in mt-6 ${
+        className={`transition-all ease-in ${
           focus ? "w-80 cursor-auto" : "w-8 cursor-pointer"
         } relative text-gray-100`}
       >
@@ -55,7 +55,7 @@ function Searchbar({ history }) {
           placeholder="Search for a movie..."
           value={input}
           className={`transition-all ease-in w-full pl-10 py-2 outline-none rounded-full bg-gray-600 text-gray-50 placeholder-gray-100 border-none ${
-            focus ? "cursor-auto" : "cursor-pointer"
+            focus ? "cursor-auto pr-4" : "cursor-pointer"
           }`}
           onChange={handleInput}
         />
