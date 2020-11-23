@@ -1,14 +1,16 @@
 import { useReducer } from "react";
 import { useEffect } from "react";
-import { Link } from "react-router-dom";
+import NotFound from "../containers/NotFound";
 import MoviesReducer from "../reducers/MoviesReducer";
 import { getSearchResults } from "../helpers/MoviesHelpers";
 import Loader from "../components/Loader";
 import MovieList from "../components/MovieList";
+import queryString from "query-string";
 
-function Search({ match, baseURL, setSelected }) {
-  const query = match.params.query;
-
+function Search({ location, match, baseURL, setSelected }) {
+  const { query } = match.params;
+  const params = queryString.parse(location.search);
+  console.log(params);
   const [state, dispatch] = useReducer(MoviesReducer, {
     loadingMovies: true,
     movies: {},
@@ -17,20 +19,41 @@ function Search({ match, baseURL, setSelected }) {
 
   useEffect(() => {
     setSelected("");
-    getSearchResults(dispatch, query, 1);
-  }, [query, setSelected]);
+    getSearchResults(dispatch, query, params.page);
+  }, [query, params.page, setSelected]);
+
   console.log("search");
 
-  const { movies, loadingMovies } = state;
+  const { movies, loadingMovies, errors } = state;
+
+  if (loadingMovies) {
+    return (
+      <div className="h-screen flex justify-center items-center">
+        <Loader />
+      </div>
+    );
+  }
+
+  if (errors.length !== 0) {
+    return (
+      <div className="h-screen mt-auto max-w-2xl mx-auto flex justify-center items-center">
+        <NotFound title="Oops!" subtitle="Something went wrong..." />
+      </div>
+    );
+  }
+
+  if (movies.results.length === 0) {
+    return (
+      <div className="h-screen flex justify-center items-center">
+        <NotFound title="Sorry!" subtitle={`No Results Found for: ${query}`} />
+      </div>
+    );
+  }
   return (
-    <div className="text-gray-600 pt-24 min-h-screen flex flex-col justify-center">
+    <div className="text-gray-600 pt-24 min-h-screen">
       <h1 className="text-3xl w-full font-thin uppercase ml-4">{query}</h1>
       <p className="text-sm uppercase font-bold ml-4">Search Results</p>
-      {loadingMovies ? (
-        <Loader />
-      ) : (
-        <MovieList movies={movies} baseURL={baseURL} name={query} />
-      )}
+      <MovieList movies={movies} baseURL={baseURL} name={query} />
     </div>
   );
 }

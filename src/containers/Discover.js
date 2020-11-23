@@ -5,34 +5,48 @@ import Loader from "../components/Loader";
 import { getDiscoverMovies } from "../helpers/MoviesHelpers";
 import MoviesReducer from "../reducers/MoviesReducer";
 import { INITIAL_MOVIES_STATE } from "../constants/state";
+import queryString from "query-string";
 
-function Discover({ match, baseURL, setSelected }) {
+function Discover({ location, match, baseURL, setSelected }) {
   const category = match.params.name;
+  const params = queryString.parse(location.search);
   console.log("discover");
   const [state, dispatch] = useReducer(MoviesReducer, INITIAL_MOVIES_STATE);
 
   useEffect(() => {
     setSelected(category);
-    getDiscoverMovies(dispatch, category.toLowerCase().replace(/\s/, "_"), 1);
-  }, [dispatch, category, setSelected]);
+    getDiscoverMovies(
+      dispatch,
+      category.toLowerCase().replace(/\s/, "_"),
+      params.page
+    );
+  }, [dispatch, category, params.page, setSelected]);
 
   const { movies, loadingMovies, errors } = state;
 
-  if (errors.length !== 0) {
-    return <NotFound />;
+  if (loadingMovies) {
+    return (
+      <div className="h-screen flex justify-center items-center">
+        <Loader />
+      </div>
+    );
+  }
+
+  if (errors.length !== 0 || movies.results.length === 0) {
+    return (
+      <div className="h-screen mt-auto max-w-2xl mx-auto flex justify-center items-center">
+        <NotFound title="Oops!" subtitle="Something went wrong..." />
+      </div>
+    );
   }
 
   return (
     <div className="text-gray-600 pt-24 min-h-screen flex flex-col justify-center">
       <h1 className="text-3xl w-full font-thin uppercase ml-4">{category}</h1>
       <p className="text-sm uppercase font-bold ml-4">movies</p>
-      {loadingMovies ? (
-        <Loader />
-      ) : (
-        <div className="text-gray-700 my-8">
-          <MovieList movies={movies} baseURL={baseURL} />
-        </div>
-      )}
+      <div className="text-gray-700 my-8">
+        <MovieList movies={movies} baseURL={baseURL} />
+      </div>
     </div>
   );
 }
