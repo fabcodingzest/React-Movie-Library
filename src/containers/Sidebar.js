@@ -11,7 +11,7 @@ const Sidebar = ({ genres, selected, setSelected }) => {
   const staticIcons = [faGift, faFire, faChartLine];
   console.log("sidebar");
   return (
-    <StickyBox className="border-r-2 sidebar border-gray-300 text-gray-500 min-h-screen">
+    <StickyBox className="hidden xl:block border-r-2 sidebar border-gray-300 text-gray-500 min-h-screen">
       <img
         className="w-full pt-6 px-6"
         src={MovieIllustration}
@@ -41,7 +41,15 @@ const Sidebar = ({ genres, selected, setSelected }) => {
 
 const renderStatic = (categories, staticIcons, selected) => {
   return categories.map((category, index) => (
-    <Link key={index} to={`${process.env.PUBLIC_URL}/discover/${category}`}>
+    <Link
+      className={`block pl-4 py-2 mt-2 text-sm rounded-full border border-transparent ${
+        selected === category
+          ? "bg-gray-700 text-gray-100 border-transparent"
+          : "hover:border-gray-500"
+      }`}
+      key={index}
+      to={`${process.env.PUBLIC_URL}/discover/${category}`}
+    >
       <ListItem
         text={category}
         icon={staticIcons[index]}
@@ -54,11 +62,15 @@ const renderStatic = (categories, staticIcons, selected) => {
 const renderGenres = (genres, selected) => {
   return genres.map((genre) => (
     <Link
-      className="block"
+      className={`block pl-4 py-2 mt-2 text-sm rounded-full border border-transparent ${
+        selected === genre.name
+          ? "bg-gray-700 text-gray-100 border-transparent"
+          : "hover:border-gray-500"
+      }`}
       key={genre.id}
       to={`${process.env.PUBLIC_URL}/genre/${genre.name}`}
     >
-      <ListItem text={genre.name} selected={selected === genre.name} />
+      <ListItem text={genre.name} />
     </Link>
   ));
 };
