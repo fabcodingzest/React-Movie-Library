@@ -7,14 +7,13 @@ function PersonReducer(state, action) {
     case "fetch_person_recommendations":
       return {
         ...state,
-        recommendedMovies: action.payload,
+        personMovies: action.payload,
+        loadingMovies: false,
       };
     case "fetch_person_loading":
       return { ...state, loadingPerson: false };
     case "person_fetch_failed":
-      return { ...state, personError: [action.payload.message] };
-    case "recommendation_fetch_failed":
-      return { ...state, recommendationError: [action.payload.message] };
+      return { ...state, errors: [action.payload.message] };
     default:
       return state;
   }

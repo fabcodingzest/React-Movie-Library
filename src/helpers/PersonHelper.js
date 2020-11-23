@@ -3,7 +3,7 @@ import tmdb from "../api/api";
 async function getPersonComponent(dispatch, personId, page, sort) {
   dispatch({ type: "fetch_person_loaded" });
   await getMovieDetails(dispatch, personId);
-  await getRecommendedMovies(dispatch, personId, page, sort);
+  await getPersonMovies(dispatch, personId, page, sort);
   dispatch({ type: "fetch_person_loading" });
 }
 
@@ -16,7 +16,7 @@ async function getMovieDetails(dispatch, personId) {
   }
 }
 
-async function getRecommendedMovies(dispatch, personId, page, sort) {
+async function getPersonMovies(dispatch, personId, page, sort) {
   try {
     const recommendedMovies = await tmdb.get(`/discover/movie`, {
       params: {
@@ -30,7 +30,7 @@ async function getRecommendedMovies(dispatch, personId, page, sort) {
       payload: recommendedMovies.data,
     });
   } catch (error) {
-    dispatch({ type: "recommendation_fetch_failed", payload: error });
+    dispatch({ type: "person_fetch_failed", payload: error });
   }
 }
 
