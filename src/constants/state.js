@@ -13,7 +13,8 @@ export const INITIAL_MOVIES_STATE = {
 
 export const INITIAL_PERSON_STATE = {
   loadingPerson: true,
-  loadingRecommendations: true,
+  loadingMovies: true,
+  personMovies: {},
   personDetails: {},
   errors: [],
   recommendationError: [],
@@ -21,6 +22,7 @@ export const INITIAL_PERSON_STATE = {
 
 export const INITIAL_MOVIE_STATE = {
   loadingMovie: true,
+  loadingRecommendations: true,
   movieDetails: {},
   castDetails: {},
   recommendedMovies: {},
