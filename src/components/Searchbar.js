@@ -37,7 +37,7 @@ function Searchbar({ history }) {
   };
   console.log("searchbar");
   return (
-    <div className="w-full absolute top-0 flex justify-end py-4">
+    <div className="w-full absolute top-0 right-5 flex justify-end py-4">
       <form
         ref={formRef}
         onClick={() => {
@@ -61,13 +61,13 @@ function Searchbar({ history }) {
         />
         <button
           type="submit"
-          className={`absolute inset-3 flex justify-center items-center text-lg ${
+          className={`absolute left-2.5 top-2.5 flex justify-center items-center text-lg ${
             focus
               ? "pointer-events-auto cursor-pointer"
               : "pointer-events-none cursor-none"
           }`}
         >
-          <FontAwesomeIcon icon={faSearch} />
+          <FontAwesomeIcon icon={faSearch} className="text-md" />
         </button>
       </form>
     </div>
