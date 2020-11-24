@@ -37,7 +37,7 @@ function Searchbar({ history }) {
   };
   console.log("searchbar");
   return (
-    <div className="w-full absolute top-0 right-5 flex justify-end py-4">
+    <div className="absolute top-0 right-6 flex justify-end py-4">
       <form
         ref={formRef}
         onClick={() => {

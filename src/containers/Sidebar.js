@@ -11,7 +11,7 @@ const Sidebar = ({ genres, selected, setSelected }) => {
   const staticIcons = [faGift, faFire, faChartLine];
   console.log("sidebar");
   return (
-    <StickyBox className="hidden xl:block border-r-2 sidebar border-gray-300 text-gray-500 min-h-screen">
+    <StickyBox className="hidden lg:block border-r-2 sidebar border-gray-300 text-gray-500 min-h-screen">
       <img
         className="w-full pt-6 px-6"
         src={MovieIllustration}

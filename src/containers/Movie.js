@@ -77,7 +77,7 @@ function Movie({ location, history, match, baseURL, setSelected }) {
           <Loader />
         </div>
       ) : (
-        <div className="movie flex flex-col md:flex-row justify-center items-center max-w-5xl 2xl:max-w-6xl mx-auto">
+        <div className="movie flex flex-col md:flex-row justify-center items-center max-w-4xl 2xl:max-w-6xl mx-auto">
           <Helmet>
             <meta charSet="utf-8" />
             <title>{`${movieDetails.title} - Movie Library`}</title>
@@ -157,9 +157,6 @@ function Movie({ location, history, match, baseURL, setSelected }) {
           loadingRecommendations
         )}
       </div>
-      <div className="w-full mb-12">
-        <Pagination movies={recommendedMovies} />
-      </div>
     </div>
   );
 }
@@ -190,7 +187,8 @@ const renderTrailer = (isOpen, setOpen, videos) => {
   if (videos.length === 0 || !videos) return;
   const { key } = videos.find(
     (video) =>
-      video.type === `${"Trailer" || "Teaser"}` && video.site === "YouTube"
+      video.type === "Trailer" ||
+      (video.type === "Teaser" && video.site === "YouTube")
   );
   return (
     <>
@@ -226,6 +224,9 @@ const renderRecommendedMovies = (movies, baseURL, loading) => {
   return (
     <Element name="scroll-to-element">
       <MovieList movies={movies} baseURL={baseURL} />
+      <div className="w-full mb-12">
+        <Pagination movies={movies} />
+      </div>
     </Element>
   );
 };
