@@ -1,21 +1,32 @@
-import { useEffect, useReducer } from "react";
+import { useEffect, useReducer, useState } from "react";
 import Loader from "../components/Loader";
 import NotFound from "../containers/NotFound";
 import { getGenreMovies } from "../helpers/MoviesHelpers";
 import MoviesReducer from "../reducers/MoviesReducer";
 import { INITIAL_MOVIES_STATE } from "../constants/state";
 import MovieList from "../components/MovieList";
+import SortBy from "../components/SortBy";
+import { animateScroll as scroll } from "react-scroll";
 import queryString from "query-string";
+import Pagination from "../components/Pagination";
 
 function Genre({ location, match, genres, baseURL, setSelected }) {
   const genreName = match.params.name;
   const params = queryString.parse(location.search);
   const [state, dispatch] = useReducer(MoviesReducer, INITIAL_MOVIES_STATE);
+  const [option, setOption] = useState({
+    value: "popularity.desc",
+    label: "Popularity",
+  });
   console.log("genre");
   useEffect(() => {
+    scroll.scrollToTop({
+      smooth: true,
+      delay: 500,
+    });
     setSelected(genreName);
-    getGenreMovies(dispatch, genres, genreName, params.page, "popularity.desc");
-  }, [genres, params.page, genreName, setSelected]);
+    getGenreMovies(dispatch, genres, genreName, params.page, option.value);
+  }, [genres, params.page, genreName, setSelected, option.value]);
 
   const { movies, loadingMovies, errors } = state;
 
@@ -36,10 +47,16 @@ function Genre({ location, match, genres, baseURL, setSelected }) {
   }
 
   return (
-    <div className="pt-24 text-gray-600 min-h-screen flex flex-col justify-center">
+    <div className="pt-32 text-gray-600 min-h-screen flex flex-col justify-center">
       <h1 className="text-3xl w-full font-thin uppercase ml-4">{genreName}</h1>
       <p className="text-sm uppercase font-bold ml-4">movies</p>
+      <div className="my-2 ml-4">
+        <SortBy option={option} setOption={setOption} />
+      </div>
       <MovieList movies={movies} baseURL={baseURL} />
+      <div className="w-full mb-12">
+        <Pagination movies={movies} />
+      </div>
     </div>
   );
 }
