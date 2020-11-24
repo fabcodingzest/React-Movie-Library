@@ -19,7 +19,7 @@ function MovieList({ movies, baseURL }) {
                   : `${blankCanvas}`
               }`}
               alt={movie.title}
-              className="h-72 sm:h-96 rounded-lg hover:rounded-br-none hover:rounded-bl-none object-contain shadow-xl hover:shadow-2xl"
+              className="h-72 sm:h-96 rounded-lg hover:rounded-br-none hover:rounded-bl-none object-cover shadow-xl hover:shadow-2xl"
             />
             <div className="w-full h-full my-auto text-center text-sm md:text-md py-4 px-2 flex flex-col justify-around">
               <p>{movie.title}</p>
