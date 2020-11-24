@@ -48,7 +48,7 @@ function App() {
           selected={selected}
           setSelected={setSelected}
         />
-        <div className="w-full min-h-screen mx-4 md:mx-8 relative">
+        <div className="w-full min-h-screen px-4 md:px-8 relative">
           <Searchbar />
           <Switch>
             <Route
