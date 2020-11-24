@@ -16,9 +16,15 @@ module.exports = {
   },
   variants: {
     extend: {
-      borderRadius: ["hover", "focus", "active", "responsive"],
-      borderStyle: ["hover", "focus", "active", "responsive"],
-      gridTemplateColumns: ["hover", "focus", "active", "responsive"],
+      borderRadius: ["hover", "focus", "active", "responsive", "group-hover"],
+      borderStyle: ["hover", "focus", "active", "responsive", "group-hover"],
+      gridTemplateColumns: [
+        "hover",
+        "focus",
+        "active",
+        "responsive",
+        "group-hover",
+      ],
     },
   },
   plugins: [],
