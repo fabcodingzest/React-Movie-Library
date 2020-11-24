@@ -9,6 +9,7 @@ import SortBy from "../components/SortBy";
 import { animateScroll as scroll } from "react-scroll";
 import queryString from "query-string";
 import Pagination from "../components/Pagination";
+import { Helmet } from "react-helmet";
 
 function Genre({ location, match, genres, baseURL, setSelected }) {
   const genreName = match.params.name;
@@ -48,6 +49,10 @@ function Genre({ location, match, genres, baseURL, setSelected }) {
 
   return (
     <div className="pt-32 text-gray-600 min-h-screen flex flex-col justify-center">
+      <Helmet>
+        <meta charSet="utf-8" />
+        <title>{`${genreName} Movies`}</title>
+      </Helmet>
       <h1 className="text-3xl w-full font-thin uppercase ml-4">{genreName}</h1>
       <p className="text-sm uppercase font-bold ml-4">movies</p>
       <div className="my-2 ml-4">

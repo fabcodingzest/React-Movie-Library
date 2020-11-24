@@ -22,6 +22,7 @@ import ModalVideo from "react-modal-video";
 import queryString from "query-string";
 import { Element, animateScroll as scroll } from "react-scroll";
 import Pagination from "../components/Pagination";
+import { Helmet } from "react-helmet";
 
 function Movie({ location, history, match, baseURL, setSelected }) {
   const [state, dispatch] = useReducer(MovieReducer, INITIAL_MOVIE_STATE);
@@ -77,6 +78,10 @@ function Movie({ location, history, match, baseURL, setSelected }) {
         </div>
       ) : (
         <div className="movie flex flex-col md:flex-row justify-center items-center max-w-5xl 2xl:max-w-6xl mx-auto">
+          <Helmet>
+            <meta charSet="utf-8" />
+            <title>{`${movieDetails.title} - Movie Library`}</title>
+          </Helmet>
           <div className="image-wrapper max-w-xs lg:max-w-sm md:w-2/5 rounded-lg md:mr-4 xl:mr-20 mb-10 lg:mb-0">
             <img
               className="object-cover rounded-lg shadow-2xl"

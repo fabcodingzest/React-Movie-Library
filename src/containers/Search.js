@@ -8,6 +8,7 @@ import MovieList from "../components/MovieList";
 import { animateScroll as scroll } from "react-scroll";
 import queryString from "query-string";
 import Pagination from "../components/Pagination";
+import { Helmet } from "react-helmet";
 
 function Search({ location, match, baseURL, setSelected }) {
   const { query } = match.params;
@@ -57,6 +58,10 @@ function Search({ location, match, baseURL, setSelected }) {
   }
   return (
     <div className="text-gray-600 pt-32 min-h-screen">
+      <Helmet>
+        <meta charSet="utf-8" />
+        <title>{`${query} Movies`}</title>
+      </Helmet>
       <h1 className="text-3xl w-full font-thin uppercase ml-4">{query}</h1>
       <p className="text-sm uppercase font-bold ml-4">Search Results</p>
       <MovieList movies={movies} baseURL={baseURL} name={query} />

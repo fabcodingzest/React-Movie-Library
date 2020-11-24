@@ -14,6 +14,7 @@ import { faImdb } from "@fortawesome/free-brands-svg-icons";
 import { Element, animateScroll as scroll } from "react-scroll";
 import Pagination from "../components/Pagination";
 import SortBy from "../components/SortBy";
+import { Helmet } from "react-helmet";
 
 function Person({ location, history, match, baseURL, setSelected }) {
   const personId = match.params.id;
@@ -68,6 +69,10 @@ function Person({ location, history, match, baseURL, setSelected }) {
         </div>
       ) : (
         <div className="movie flex flex-col lg:flex-row justify-center items-center gap-10 lg:gap-16 max-w-6xl mx-auto">
+          <Helmet>
+            <meta charSet="utf-8" />
+            <title>{`${personDetails.name} - Movie Library`}</title>
+          </Helmet>
           <div className="image-wrapper max-w-sm rounded-lg">
             <img
               className="object-cover rounded-lg"
