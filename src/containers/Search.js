@@ -5,7 +5,9 @@ import MoviesReducer from "../reducers/MoviesReducer";
 import { getSearchResults } from "../helpers/MoviesHelpers";
 import Loader from "../components/Loader";
 import MovieList from "../components/MovieList";
+import { animateScroll as scroll } from "react-scroll";
 import queryString from "query-string";
+import Pagination from "../components/Pagination";
 
 function Search({ location, match, baseURL, setSelected }) {
   const { query } = match.params;
@@ -18,6 +20,10 @@ function Search({ location, match, baseURL, setSelected }) {
   });
 
   useEffect(() => {
+    scroll.scrollToTop({
+      smooth: true,
+      delay: 400,
+    });
     setSelected("");
     getSearchResults(dispatch, query, params.page);
   }, [query, params.page, setSelected]);
@@ -50,10 +56,13 @@ function Search({ location, match, baseURL, setSelected }) {
     );
   }
   return (
-    <div className="text-gray-600 pt-24 min-h-screen">
+    <div className="text-gray-600 pt-32 min-h-screen">
       <h1 className="text-3xl w-full font-thin uppercase ml-4">{query}</h1>
       <p className="text-sm uppercase font-bold ml-4">Search Results</p>
       <MovieList movies={movies} baseURL={baseURL} name={query} />
+      <div className="w-full mb-12">
+        <Pagination movies={movies} />
+      </div>
     </div>
   );
 }
