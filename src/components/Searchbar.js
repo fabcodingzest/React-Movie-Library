@@ -50,20 +50,20 @@ function Searchbar({ history }) {
         type="text"
         placeholder="Search for a movie..."
         value={input}
-        className={`text-xl lg:text-sm transition-all ease-in w-full pl-10 lg:pl-8 py-1.5 outline-none rounded-full bg-gray-600 text-gray-50 placeholder-gray-100 border-none ${
+        className={`text-xl lg:text-sm transition-all ease-in w-full pl-10  py-1.5 lg:py-2.5 outline-none rounded-full bg-gray-600 text-gray-50 placeholder-gray-100 border-none ${
           focus ? "cursor-auto pr-4" : "cursor-pointer"
         }`}
         onChange={(e) => setInput(e.target.value)}
       />
       <button
         type="submit"
-        className={`absolute w-6 h-6 top-2 left-2 lg:top-1 lg:left-1 flex justify-center items-center text-lg ${
+        className={`absolute w-6 h-6 top-2 left-2 flex justify-center items-center text-lg ${
           focus
             ? "pointer-events-auto cursor-pointer"
             : "pointer-events-none cursor-none"
         }`}
       >
-        <FontAwesomeIcon icon={faSearch} className="text-md lg:text-sm" />
+        <FontAwesomeIcon icon={faSearch} className="text-md " />
       </button>
     </form>
   );
