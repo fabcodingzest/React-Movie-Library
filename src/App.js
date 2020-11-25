@@ -13,6 +13,10 @@ import { INITIAL_APP_STATE } from "./constants/state";
 import InitializeReducer from "./reducers/InitializeReducer";
 import appInit from "./helpers/AppInitializeHelpers";
 import Loader from "./components/Loader";
+import ReactGA from "react-ga";
+
+ReactGA.initialize(process.env.REACT_APP_GA_KEY);
+ReactGA.pageview(window.location.pathname + window.location.search);
 
 function App() {
   console.log("App render outside useEffect");
