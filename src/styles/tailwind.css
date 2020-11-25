@@ -13,7 +13,7 @@ html {
 @tailwind components;
 
 .sidebar {
-  width: 14rem;
+  width: 16rem;
 }
 .loader {
   border: 0.4rem solid #f3f3f3;
