@@ -57,7 +57,7 @@ function Searchbar({ history }) {
       />
       <button
         type="submit"
-        className={`absolute inset-2.5 lg:left-2 flex justify-center items-center text-lg ${
+        className={`absolute w-6 h-6 top-2 left-2 lg:top-1 lg:left-1 flex justify-center items-center text-lg ${
           focus
             ? "pointer-events-auto cursor-pointer"
             : "pointer-events-none cursor-none"
