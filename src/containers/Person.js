@@ -46,7 +46,7 @@ function Person({ location, history, match, baseURL, setSelected }) {
   if (errors.length !== 0) {
     return (
       <div className="h-screen mt-auto max-w-2xl mx-auto flex justify-center items-center">
-        <NotFound title="Oops!" subtitle="Something went wrong..." />
+        <NotFound title="Oops!" subtitle="Something went wrong..." home />
       </div>
     );
   }

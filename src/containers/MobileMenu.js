@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import StickyBox from "react-sticky-box";
-import MovieIllustration from "../assets/movietime.svg";
 import TMDBLogo from "../assets/TMDBLogoLight.svg";
 import { Link } from "react-router-dom";
 import { faGift, faFire, faChartLine } from "@fortawesome/free-solid-svg-icons";
