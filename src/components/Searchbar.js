@@ -37,7 +37,7 @@ function Searchbar({ history }) {
   };
   console.log("searchbar");
   return (
-    <div className="absolute top-0 right-6 flex justify-end py-4">
+    <div className="z-50 absolute top-0 right-6 flex justify-end py-4 sm:py-4">
       <form
         ref={formRef}
         onClick={() => {
@@ -46,7 +46,7 @@ function Searchbar({ history }) {
         }}
         onSubmit={handleSubmit}
         className={`transition-all ease-in ${
-          focus ? "w-80 cursor-auto" : "w-8 cursor-pointer"
+          focus ? "w-64 sm:w-80 cursor-auto" : "w-8 cursor-pointer"
         } relative text-gray-100`}
       >
         <input
