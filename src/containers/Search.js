@@ -7,7 +7,6 @@ import Loader from "../components/Loader";
 import MovieList from "../components/MovieList";
 import { animateScroll as scroll } from "react-scroll";
 import queryString from "query-string";
-import Pagination from "../components/Pagination";
 import { Helmet } from "react-helmet";
 
 function Search({ location, match, baseURL, setSelected }) {
@@ -65,9 +64,8 @@ function Search({ location, match, baseURL, setSelected }) {
       <h1 className="text-3xl w-full font-thin uppercase ml-4">{query}</h1>
       <p className="text-sm uppercase font-bold ml-4">Search Results</p>
       <MovieList movies={movies} baseURL={baseURL} name={query} />
-      <div className="w-full mb-12">
-        <Pagination movies={movies} />
-      </div>
+
+      
     </div>
   );
 }

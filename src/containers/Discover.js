@@ -7,7 +7,6 @@ import MoviesReducer from "../reducers/MoviesReducer";
 import { INITIAL_MOVIES_STATE } from "../constants/state";
 import { animateScroll as scroll } from "react-scroll";
 import queryString from "query-string";
-import Pagination from "../components/Pagination";
 import { Helmet } from "react-helmet";
 
 function Discover({ location, match, baseURL, setSelected }) {
@@ -57,9 +56,6 @@ function Discover({ location, match, baseURL, setSelected }) {
       <p className="text-sm uppercase font-bold ml-4">movies</p>
       <div className="text-gray-700 my-8">
         <MovieList movies={movies} baseURL={baseURL} />
-      </div>
-      <div className="w-full mb-12">
-        <Pagination movies={movies} />
       </div>
     </div>
   );

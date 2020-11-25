@@ -16,11 +16,14 @@ html {
   width: 16rem;
 }
 .loader {
-  border: 0.4rem solid #f3f3f3;
-  border-top: 0.4rem solid #000;
-  border-radius: 50%;
-  width: 5rem;
-  height: 5rem;
+  border: 0.3rem solid #f3f3f3;
+  border-top: 0.3rem solid #000;
+}
+.movie-img-wrapper {
+  min-height: 18rem;
+}
+.loader-wrapper {
+  min-height: 30rem;
 }
 
 @tailwind utilities;

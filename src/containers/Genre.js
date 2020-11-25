@@ -8,7 +8,6 @@ import MovieList from "../components/MovieList";
 import SortBy from "../components/SortBy";
 import { animateScroll as scroll } from "react-scroll";
 import queryString from "query-string";
-import Pagination from "../components/Pagination";
 import { Helmet } from "react-helmet";
 
 function Genre({ location, match, genres, baseURL, setSelected }) {
@@ -59,9 +58,6 @@ function Genre({ location, match, genres, baseURL, setSelected }) {
         <SortBy option={option} setOption={setOption} />
       </div>
       <MovieList movies={movies} baseURL={baseURL} />
-      <div className="w-full mb-12">
-        <Pagination movies={movies} />
-      </div>
     </div>
   );
 }

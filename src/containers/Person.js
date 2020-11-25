@@ -11,14 +11,15 @@ import Button from "../components/Button";
 import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
 import { faImdb } from "@fortawesome/free-brands-svg-icons";
 import { Element, animateScroll as scroll } from "react-scroll";
-import Pagination from "../components/Pagination";
 import SortBy from "../components/SortBy";
 import { Helmet } from "react-helmet";
+import LazyLoad from "react-lazyload";
 
 function Person({ location, history, match, baseURL, setSelected }) {
   const personId = match.params.id;
   const params = queryString.parse(location.search);
   const [state, dispatch] = useReducer(PersonReducer, INITIAL_PERSON_STATE);
+  const [imageloaded, setImgLoaded] = useState(false);
   const [option, setOption] = useState({
     value: "popularity.desc",
     label: "Popularity",
@@ -37,6 +38,7 @@ function Person({ location, history, match, baseURL, setSelected }) {
     });
     setSelected("");
     getPersonDetails(dispatch, personId);
+    return () => setImgLoaded(false);
   }, [personId, setSelected]);
   useEffect(() => {
     getPersonMovies(dispatch, personId, params.page, option.value);
@@ -67,40 +69,50 @@ function Person({ location, history, match, baseURL, setSelected }) {
           <Loader />
         </div>
       ) : (
-        <div className="movie flex flex-col lg:flex-row justify-center items-center gap-10 lg:gap-16 max-w-6xl mx-auto">
-          <Helmet>
-            <meta charSet="utf-8" />
-            <title>{`${personDetails.name} - Movie Library`}</title>
-          </Helmet>
-          <div className="image-wrapper max-w-sm rounded-lg">
-            <img
-              className="object-cover rounded-lg"
-              src={
-                personDetails.profile_path
-                  ? `${baseURL}w500${personDetails.profile_path}`
-                  : Avatar
-              }
-              alt={personDetails.title}
-            />
-          </div>
-          <div className="movie-details w-full lg:w-2/4 sm:px-6">
-            <h1 className="text-3xl xl:text-4xl w-full font-thin uppercase my-2">
-              {personDetails.name}
-            </h1>
-            <div className="Biography text-md">
-              <p className="font-semibold mt-6 mb-2">The Biography</p>
-              <p>
-                {personDetails.biography.length !== 0
-                  ? personDetails.biography
-                  : "No biography found..."}
-              </p>
+        <LazyLoad height={500}>
+          <div className="movie flex flex-col lg:flex-row justify-center items-center gap-10 lg:gap-16 max-w-6xl mx-auto">
+            <Helmet>
+              <meta charSet="utf-8" />
+              <title>{`${personDetails.name} - Movie Library`}</title>
+            </Helmet>
+            <div className="w-full h-full sm:w-2/5 max-w-sm rounded-lg">
+              {!imageloaded ? (
+                <div className="loader-wrapper w-full h-full flex justify-center items-center rounded-lg shadow-2xl transition-all">
+                  <Loader imageLoader />
+                </div>
+              ) : null}
+              <img
+                onLoad={() => setImgLoaded(true)}
+                className={`object-cover rounded-lg shadow-2xl ${
+                  !imageloaded ? "hidden" : "block"
+                }`}
+                src={
+                  personDetails.profile_path
+                    ? `${baseURL}w500${personDetails.profile_path}`
+                    : Avatar
+                }
+                alt={personDetails.title}
+              />
             </div>
-            <div className="links w-full flex flex-row justify-between items-center my-8">
-              {renderIMDB(personDetails.imdb_id)}
-              {renderBack()}
+            <div className="movie-details w-full lg:w-2/4 sm:px-6">
+              <h1 className="text-3xl xl:text-4xl w-full font-thin uppercase my-2">
+                {personDetails.name}
+              </h1>
+              <div className="Biography text-md">
+                <p className="font-semibold mt-6 mb-2">The Biography</p>
+                <p>
+                  {personDetails.biography.length !== 0
+                    ? personDetails.biography
+                    : "No biography found..."}
+                </p>
+              </div>
+              <div className="links w-full flex flex-row justify-between items-center my-8">
+                {renderIMDB(personDetails.imdb_id)}
+                {renderBack()}
+              </div>
             </div>
           </div>
-        </div>
+        </LazyLoad>
       )}
       <div className="recommended mt-20">
         <h1 className="text-3xl w-full font-thin uppercase ml-4">
@@ -111,9 +123,6 @@ function Person({ location, history, match, baseURL, setSelected }) {
           <SortBy option={option} setOption={setOption} />
         </div>
         {renderPersonMovies(personMovies, loadingMovies, baseURL)}
-      </div>
-      <div className="w-full mb-12">
-        <Pagination movies={personMovies} />
       </div>
     </div>
   );
