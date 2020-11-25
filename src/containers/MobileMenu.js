@@ -36,12 +36,13 @@ let styles = {
   bmItem: {
     display: "inline-block",
     width: "100%",
+    outline: "none",
   },
   bmOverlay: {
     background: "rgba(0, 0, 0, 0.3)",
   },
 };
-function MobileMenu({ genres, selected, setSelected }) {
+function MobileMenu({ genres, selected }) {
   const staticCategories = ["Popular", "Top Rated", "Upcoming"];
   const [isOpen, setOpen] = useState(false);
   const staticIcons = [faGift, faFire, faChartLine];
@@ -54,10 +55,10 @@ function MobileMenu({ genres, selected, setSelected }) {
   };
   return (
     <>
-      <StickyBox className="w-full z-40 flex justify-between items-center py-6 px-8 sm:py-4 shadow-xl bg-indigo-300">
+      <StickyBox className="w-full z-40 flex justify-between items-center py-4 px-8 shadow-xl bg-indigo-300">
         <div className="menu cursor-pointer" onClick={handleMenuOpen}>
           <svg
-            className="h-6 md:h-8 w-6 md:w-8 fill-current text-black"
+            className="h-10 w-10 fill-current text-black"
             fill="none"
             strokeLinecap="round"
             strokeLinejoin="round"
@@ -71,20 +72,13 @@ function MobileMenu({ genres, selected, setSelected }) {
         <Searchbar />
       </StickyBox>
       <Menu
-        width={200}
+        width={280}
         isOpen={isOpen}
         onStateChange={isMenuOpen}
         styles={styles}
       >
-        <div className="img">
-          <img
-            className="w-full pt-6 px-16"
-            src={MovieIllustration}
-            alt="Movie illustration"
-          />
-        </div>
         <div className="sidebar p-4 text-gray-100">
-          <h1 className="font-bold text-lg">Discover</h1>
+          <h1 className="font-bold text-lg mt-6">Discover</h1>
           {renderStatic(staticCategories, staticIcons, selected, setOpen)}
           <br />
           <h1 className="font-bold text-lg">Genres</h1>
@@ -97,7 +91,7 @@ function MobileMenu({ genres, selected, setSelected }) {
           </a>
         </p>
         <img
-          className="w-full px-20 py-6"
+          className="w-full px-20 sm:px-10 py-6"
           src={TMDBLogo}
           alt="The Movie DB Logo"
         />
