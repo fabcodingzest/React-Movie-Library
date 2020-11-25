@@ -27,7 +27,7 @@ let styles = {
   bmMenu: {
     background: "#373a47",
     padding: "2em 0.4em 0",
-    fontSize: "1.15em",
+    fontSize: "1.15rem",
   },
   bmItemList: {
     color: "#b8b7ad",
@@ -38,6 +38,7 @@ let styles = {
     outline: "none",
   },
   bmOverlay: {
+    top: 0,
     background: "rgba(0, 0, 0, 0.3)",
   },
 };
@@ -68,7 +69,7 @@ function MobileMenu({ genres, selected }) {
             <path d="M4 6h16M4 12h16M4 18h16"></path>
           </svg>
         </div>
-        <Searchbar />
+        <Searchbar className="z-40" />
       </StickyBox>
       <Menu
         width={200}
@@ -76,7 +77,7 @@ function MobileMenu({ genres, selected }) {
         onStateChange={isMenuOpen}
         styles={styles}
       >
-        <div className="sidebar p-4 text-gray-100">
+        <div className="sidebar p-4 pl-1 text-gray-100">
           <h1 className="font-bold text-lg mt-6">Discover</h1>
           {renderStatic(staticCategories, staticIcons, selected, setOpen)}
           <br />
