@@ -19,10 +19,6 @@ function Searchbar({ history }) {
     };
   }, []);
 
-  const handleInput = (e) => {
-    setInput(e.target.value);
-  };
-
   const handleClick = (e) => {
     if (formRef.current.contains(e.target)) return;
     setFocus(false);
@@ -31,46 +27,45 @@ function Searchbar({ history }) {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (input.length === 0) return;
-    setInput("");
+    inputRef.current.blur();
     setFocus(false);
+    setInput("");
     history.push(`${process.env.PUBLIC_URL}/search/${input}`);
   };
   console.log("searchbar");
   return (
-    <div className="z-50 absolute top-0 right-6 flex justify-end py-4 sm:py-4">
-      <form
-        ref={formRef}
-        onClick={() => {
-          setFocus(true);
-          inputRef.current.focus();
-        }}
-        onSubmit={handleSubmit}
-        className={`transition-all ease-in ${
-          focus ? "w-64 sm:w-80 cursor-auto" : "w-8 cursor-pointer"
-        } relative text-gray-100`}
+    <form
+      ref={formRef}
+      onClick={() => {
+        setFocus(true);
+        inputRef.current.focus();
+      }}
+      onSubmit={handleSubmit}
+      className={`transition-all ease-in ${
+        focus ? "w-80 sm:w-96 cursor-auto" : "w-8 cursor-pointer"
+      } relative text-gray-100`}
+    >
+      <input
+        ref={inputRef}
+        type="text"
+        placeholder="Search for a movie..."
+        value={input}
+        className={`text-xl lg:text-sm transition-all ease-in w-full pl-10 lg:pl-8 py-1.5 outline-none rounded-full bg-gray-600 text-gray-50 placeholder-gray-100 border-none ${
+          focus ? "cursor-auto pr-4" : "cursor-pointer"
+        }`}
+        onChange={(e) => setInput(e.target.value)}
+      />
+      <button
+        type="submit"
+        className={`absolute inset-2.5 lg:left-2 flex justify-center items-center text-lg ${
+          focus
+            ? "pointer-events-auto cursor-pointer"
+            : "pointer-events-none cursor-none"
+        }`}
       >
-        <input
-          ref={inputRef}
-          type="text"
-          placeholder="Search for a movie..."
-          value={input}
-          className={`transition-all ease-in w-full pl-10 py-2 outline-none rounded-full bg-gray-600 text-gray-50 placeholder-gray-100 border-none ${
-            focus ? "cursor-auto pr-4" : "cursor-pointer"
-          }`}
-          onChange={handleInput}
-        />
-        <button
-          type="submit"
-          className={`absolute left-2.5 top-2.5 flex justify-center items-center text-lg ${
-            focus
-              ? "pointer-events-auto cursor-pointer"
-              : "pointer-events-none cursor-none"
-          }`}
-        >
-          <FontAwesomeIcon icon={faSearch} className="text-md" />
-        </button>
-      </form>
-    </div>
+        <FontAwesomeIcon icon={faSearch} className="text-md lg:text-sm" />
+      </button>
+    </form>
   );
 }
 
