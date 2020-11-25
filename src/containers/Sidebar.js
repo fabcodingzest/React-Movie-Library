@@ -1,7 +1,7 @@
 import React from "react";
 import StickyBox from "react-sticky-box";
 import MovieIllustration from "../assets/movietime.svg";
-import TMDBLogo from "../assets/TMDBLogo.svg";
+import TMDBLogo from "../assets/TMDBLogoDark.svg";
 import { Link } from "react-router-dom";
 import ListItem from "../components/ListItem";
 import { faGift, faFire, faChartLine } from "@fortawesome/free-solid-svg-icons";
@@ -24,7 +24,7 @@ const Sidebar = ({ genres, selected, setSelected }) => {
         <h1 className="text-gray-700 font-bold text-lg">Genres</h1>
         {renderGenres(genres, selected)}
       </div>
-      <p className="flex justify-center items-center mt-4 text-md">
+      <p className="flex text-center justify-center items-center mt-4 text-md">
         &copy; Copyright
         <a href="https://github.com/fabcodingzest" className="font-bold ml-2">
           Fab
@@ -53,7 +53,6 @@ const renderStatic = (categories, staticIcons, selected) => {
       <ListItem
         text={category}
         icon={staticIcons[index]}
-        selected={selected === category}
       />
     </Link>
   ));
