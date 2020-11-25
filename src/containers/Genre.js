@@ -1,6 +1,5 @@
 import { useEffect, useReducer, useState } from "react";
 import Loader from "../components/Loader";
-import NotFound from "../containers/NotFound";
 import { getGenreMovies } from "../helpers/MoviesHelpers";
 import MoviesReducer from "../reducers/MoviesReducer";
 import { INITIAL_MOVIES_STATE } from "../constants/state";
@@ -10,7 +9,7 @@ import { animateScroll as scroll } from "react-scroll";
 import queryString from "query-string";
 import { Helmet } from "react-helmet";
 
-function Genre({ location, match, genres, baseURL, setSelected }) {
+function Genre({ history, location, match, genres, baseURL, setSelected }) {
   const genreName = match.params.name;
   const params = queryString.parse(location.search);
   const [state, dispatch] = useReducer(MoviesReducer, INITIAL_MOVIES_STATE);
@@ -39,11 +38,7 @@ function Genre({ location, match, genres, baseURL, setSelected }) {
   }
 
   if (errors.length !== 0) {
-    return (
-      <div className="h-screen mt-auto max-w-2xl mx-auto flex justify-center items-center">
-        <NotFound title="Oops!" subtitle="Something went wrong..." home />
-      </div>
-    );
+    history.push(`${process.env.PUBLIC_URL}/error`);
   }
 
   return (

@@ -9,7 +9,7 @@ import { animateScroll as scroll } from "react-scroll";
 import queryString from "query-string";
 import { Helmet } from "react-helmet";
 
-function Discover({ location, match, baseURL, setSelected }) {
+function Discover({ history, location, match, baseURL, setSelected }) {
   const category = match.params.name;
   const params = queryString.parse(location.search);
   console.log("discover");
@@ -37,13 +37,19 @@ function Discover({ location, match, baseURL, setSelected }) {
       </div>
     );
   }
-
-  if (errors.length !== 0 || movies.results.length === 0) {
+  if (movies.results.length === 0) {
     return (
-      <div className="h-screen mt-auto max-w-2xl mx-auto flex justify-center items-center">
-        <NotFound title="Oops!" subtitle="Something went wrong..." home />
+      <div className="h-screen flex justify-center items-center">
+        <NotFound
+          title="Sorry!"
+          subtitle={`No Results Found for: ${category}`}
+          home
+        />
       </div>
     );
+  }
+  if (errors.length !== 0) {
+    history.push(`${process.env.PUBLIC_URL}/error`);
   }
 
   return (

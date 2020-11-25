@@ -46,11 +46,7 @@ function Person({ location, history, match, baseURL, setSelected }) {
   console.log("person");
 
   if (errors.length !== 0) {
-    return (
-      <div className="h-screen mt-auto max-w-2xl mx-auto flex justify-center items-center">
-        <NotFound title="Oops!" subtitle="Something went wrong..." home />
-      </div>
-    );
+    history.push(`${process.env.PUBLIC_URL}/error`);
   }
 
   const renderBack = () => {

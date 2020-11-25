@@ -149,9 +149,17 @@ function App() {
             <Route
               exact
               path={process.env.PUBLIC_URL + "/error"}
-              component={NotFound}
+              component={() => (
+                <div className="h-screen max-w-7xl mx-auto flex justify-center items-center">
+                  <NotFound
+                    title="Oops!"
+                    subtitle="Something went wrong..."
+                    home
+                  />
+                </div>
+              )}
             />
-            <Route render={() => <NotFound />} />
+            <Route render={() => <NotFound title="Route not found!" />} />
           </Switch>
         </div>
       </div>

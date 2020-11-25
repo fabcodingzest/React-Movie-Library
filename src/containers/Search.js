@@ -9,7 +9,7 @@ import { animateScroll as scroll } from "react-scroll";
 import queryString from "query-string";
 import { Helmet } from "react-helmet";
 
-function Search({ location, match, baseURL, setSelected }) {
+function Search({ history, location, match, baseURL, setSelected }) {
   const { query } = match.params;
   const params = queryString.parse(location.search);
   console.log(params);
@@ -41,17 +41,17 @@ function Search({ location, match, baseURL, setSelected }) {
   }
 
   if (errors.length !== 0) {
-    return (
-      <div className="h-screen mt-auto max-w-2xl mx-auto flex justify-center items-center">
-        <NotFound title="Oops!" subtitle="Something went wrong..." home />
-      </div>
-    );
+    history.push(`${process.env.PUBLIC_URL}/error`);
   }
 
   if (movies.results.length === 0) {
     return (
       <div className="h-screen flex justify-center items-center">
-        <NotFound title="Sorry!" subtitle={`No Results Found for: ${query}`} home />
+        <NotFound
+          title="Sorry!"
+          subtitle={`No Results Found for: ${query}`}
+          home
+        />
       </div>
     );
   }
@@ -64,8 +64,6 @@ function Search({ location, match, baseURL, setSelected }) {
       <h1 className="text-3xl w-full font-thin uppercase ml-4">{query}</h1>
       <p className="text-sm uppercase font-bold ml-4">Search Results</p>
       <MovieList movies={movies} baseURL={baseURL} name={query} />
-
-      
     </div>
   );
 }
