@@ -62,7 +62,7 @@ function Person({ location, history, match, baseURL, setSelected }) {
   };
 
   return (
-    <div className="pt-40 text-gray-700 ">
+    <div className="pt-16 text-gray-700 ">
       {loadingPerson ? (
         <div className="h-screen flex justify-center items-center">
           <Loader />

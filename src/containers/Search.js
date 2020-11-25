@@ -57,7 +57,7 @@ function Search({ location, match, baseURL, setSelected }) {
     );
   }
   return (
-    <div className="text-gray-600 pt-32 min-h-screen">
+    <div className="text-gray-600 pt-16 min-h-screen">
       <Helmet>
         <meta charSet="utf-8" />
         <title>{`${query} Movies`}</title>

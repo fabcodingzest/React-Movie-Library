@@ -71,7 +71,7 @@ function Movie({ location, history, match, baseURL, setSelected }) {
   };
 
   return (
-    <div className="pt-32 text-gray-700 ">
+    <div className="pt-16 text-gray-700 ">
       {loadingMovie ? (
         <div className="h-screen flex justify-center items-center">
           <Loader />

@@ -27,7 +27,7 @@ function Discover({ location, match, baseURL, setSelected }) {
       category.toLowerCase().replace(/\s/, "_"),
       params.page
     );
-  }, [dispatch, category, params.page, setSelected]);
+  }, [category, params.page, setSelected]);
 
   const { movies, loadingMovies, errors } = state;
 
@@ -48,7 +48,7 @@ function Discover({ location, match, baseURL, setSelected }) {
   }
 
   return (
-    <div className="text-gray-600 pt-32 min-h-screen flex flex-col justify-center">
+    <div className="text-gray-600 pt-16 min-h-screen flex flex-col justify-center">
       <Helmet>
         <meta charSet="utf-8" />
         <title>{`${category} Movies`}</title>

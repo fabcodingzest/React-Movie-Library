@@ -48,7 +48,7 @@ function Genre({ location, match, genres, baseURL, setSelected }) {
   }
 
   return (
-    <div className="pt-32 text-gray-600 min-h-screen flex flex-col justify-center">
+    <div className="pt-16 text-gray-600 min-h-screen flex flex-col justify-center">
       <Helmet>
         <meta charSet="utf-8" />
         <title>{`${genreName} Movies`}</title>
