@@ -71,7 +71,9 @@ function App() {
               selected={selected}
               setSelected={setSelected}
             />
-            <Searchbar />
+            <div className="z-50 absolute top-4 right-8">
+              <Searchbar />
+            </div>
           </>
         )}
         <div className="w-full min-h-screen px-4 md:px-8 relative">
