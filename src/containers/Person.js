@@ -1,5 +1,4 @@
 import { useEffect, useReducer, useState } from "react";
-import { Link } from "react-router-dom";
 import Avatar from "../assets/avatar.svg";
 import NotFound from "../containers/NotFound";
 import Loader from "../components/Loader";

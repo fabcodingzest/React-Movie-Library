@@ -3,7 +3,6 @@ import StickyBox from "react-sticky-box";
 import MovieIllustration from "../assets/movietime.svg";
 import TMDBLogo from "../assets/TMDBLogoLight.svg";
 import { Link } from "react-router-dom";
-import ListItem from "../components/ListItem";
 import { faGift, faFire, faChartLine } from "@fortawesome/free-solid-svg-icons";
 import { slide as Menu } from "react-burger-menu";
 import Searchbar from "../components/Searchbar";
@@ -55,7 +54,7 @@ function MobileMenu({ genres, selected, setSelected }) {
   };
   return (
     <>
-      <StickyBox className="w-full z-40 flex justify-between items-center py-6 px-8 sm:py-6 shadow-xl bg-indigo-300">
+      <StickyBox className="w-full z-40 flex justify-between items-center py-6 px-8 sm:py-4 shadow-xl bg-indigo-300">
         <div className="menu cursor-pointer" onClick={handleMenuOpen}>
           <svg
             className="h-6 md:h-8 w-6 md:w-8 fill-current text-black"
