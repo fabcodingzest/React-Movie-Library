@@ -71,7 +71,7 @@ function MobileMenu({ genres, selected }) {
         <Searchbar />
       </StickyBox>
       <Menu
-        width={280}
+        width={200}
         isOpen={isOpen}
         onStateChange={isMenuOpen}
         styles={styles}
