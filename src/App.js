@@ -71,7 +71,7 @@ function App() {
               selected={selected}
               setSelected={setSelected}
             />
-            <div className="z-50 absolute top-4 right-8">
+            <div className="z-50 absolute top-6 right-8">
               <Searchbar />
             </div>
           </>
