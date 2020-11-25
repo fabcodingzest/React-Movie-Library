@@ -5,6 +5,7 @@ import Genre from "./containers/Genre";
 import Search from "./containers/Search";
 import Person from "./containers/Person";
 import Discover from "./containers/Discover";
+import MobileMenu from "./containers/MobileMenu";
 import Movie from "./containers/Movie";
 import Searchbar from "./components/Searchbar";
 import NotFound from "./containers/NotFound";
@@ -16,12 +17,22 @@ import Loader from "./components/Loader";
 function App() {
   console.log("App render outside useEffect");
   const [selected, setSelected] = useState("Popular");
+  const [isMobile, setMobile] = useState(null);
   const [appState, appDispatch] = useReducer(
     InitializeReducer,
     INITIAL_APP_STATE
   );
+
+  const changeFromMobile = () => {
+    window.matchMedia("(min-width: 1024px").matches
+      ? setMobile(false)
+      : setMobile(true);
+  };
   useEffect(() => {
+    changeFromMobile();
+    window.addEventListener("resize", changeFromMobile);
     appInit(appDispatch);
+    return () => window.removeEventListener("resize", changeFromMobile);
   }, [appDispatch]);
 
   const { config, loadingApp, genres, errors } = appState;
@@ -42,14 +53,28 @@ function App() {
 
   return (
     <div className="text-gray-600">
-      <div className="w-full min-h-screen flex items-start">
-        <Sidebar
-          genres={genres}
-          selected={selected}
-          setSelected={setSelected}
-        />
+      <div
+        className={`w-full min-h-screen ${
+          isMobile ? "flex-col" : "flex"
+        } items-start`}
+      >
+        {isMobile ? (
+          <MobileMenu
+            genres={genres}
+            selected={selected}
+            setSelected={setSelected}
+          />
+        ) : (
+          <>
+            <Sidebar
+              genres={genres}
+              selected={selected}
+              setSelected={setSelected}
+            />
+            <Searchbar />
+          </>
+        )}
         <div className="w-full min-h-screen px-4 md:px-8 relative">
-          <Searchbar />
           <Switch>
             <Route
               exact
