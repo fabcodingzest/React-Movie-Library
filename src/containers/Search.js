@@ -8,6 +8,7 @@ import MovieList from "../components/MovieList";
 import { animateScroll as scroll } from "react-scroll";
 import queryString from "query-string";
 import { Helmet } from "react-helmet";
+import Header from "../components/Header";
 
 function Search({ history, location, match, baseURL, setSelected }) {
   const { query } = match.params;
@@ -61,8 +62,7 @@ function Search({ history, location, match, baseURL, setSelected }) {
         <meta charSet="utf-8" />
         <title>{`${query} Movies`}</title>
       </Helmet>
-      <h1 className="text-3xl w-full font-thin uppercase ml-4">{query}</h1>
-      <p className="text-sm uppercase font-bold ml-4">Search Results</p>
+      <Header name={query} />
       <MovieList movies={movies} baseURL={baseURL} name={query} />
     </div>
   );

@@ -8,6 +8,7 @@ import { INITIAL_MOVIES_STATE } from "../constants/state";
 import { animateScroll as scroll } from "react-scroll";
 import queryString from "query-string";
 import { Helmet } from "react-helmet";
+import Header from "../components/Header";
 
 function Discover({ history, location, match, baseURL, setSelected }) {
   const category = match.params.name;
@@ -58,8 +59,7 @@ function Discover({ history, location, match, baseURL, setSelected }) {
         <meta charSet="utf-8" />
         <title>{`${category} Movies`}</title>
       </Helmet>
-      <h1 className="text-3xl w-full font-thin uppercase ml-4">{category}</h1>
-      <p className="text-sm uppercase font-bold ml-4">movies</p>
+      <Header name={category} />
       <div className="text-gray-700 my-8">
         <MovieList movies={movies} baseURL={baseURL} />
       </div>

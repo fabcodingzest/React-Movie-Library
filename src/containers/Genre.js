@@ -8,6 +8,7 @@ import SortBy from "../components/SortBy";
 import { animateScroll as scroll } from "react-scroll";
 import queryString from "query-string";
 import { Helmet } from "react-helmet";
+import Header from "../components/Header";
 
 function Genre({ history, location, match, genres, baseURL, setSelected }) {
   const genreName = match.params.name;
@@ -47,8 +48,7 @@ function Genre({ history, location, match, genres, baseURL, setSelected }) {
         <meta charSet="utf-8" />
         <title>{`${genreName} Movies`}</title>
       </Helmet>
-      <h1 className="text-3xl w-full font-thin uppercase ml-4">{genreName}</h1>
-      <p className="text-sm uppercase font-bold ml-4">movies</p>
+      <Header name={genreName} />
       <div className="my-2 ml-4">
         <SortBy option={option} setOption={setOption} />
       </div>

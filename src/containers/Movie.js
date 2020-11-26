@@ -23,6 +23,7 @@ import queryString from "query-string";
 import { Element, animateScroll as scroll } from "react-scroll";
 import { Helmet } from "react-helmet";
 import LazyLoad from "react-lazyload";
+import Header from "../components/Header";
 
 function Movie({ location, history, match, baseURL, setSelected }) {
   const [state, dispatch] = useReducer(MovieReducer, INITIAL_MOVIE_STATE);
@@ -56,7 +57,7 @@ function Movie({ location, history, match, baseURL, setSelected }) {
   console.log("movie");
 
   if (errors.length !== 0) {
-        history.push(`${process.env.PUBLIC_URL}/error`);
+    history.push(`${process.env.PUBLIC_URL}/error`);
   }
 
   const renderBack = () => {
@@ -157,10 +158,7 @@ function Movie({ location, history, match, baseURL, setSelected }) {
         </LazyLoad>
       )}
       <div className="recommended mt-20">
-        <h1 className="text-3xl w-full font-thin uppercase ml-4">
-          Recommended Movies
-        </h1>
-        <p className="text-sm uppercase font-bold ml-4">movies</p>
+        <Header name="Recommended" />
         {renderRecommendedMovies(
           recommendedMovies,
           baseURL,
