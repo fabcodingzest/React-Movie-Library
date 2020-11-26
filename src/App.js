@@ -1,6 +1,6 @@
 import React, { useReducer, useEffect, useState } from "react";
 import Sidebar from "./containers/Sidebar";
-import { Switch, Route, Redirect } from "react-router-dom";
+import { Switch, Route, Redirect, useHistory } from "react-router-dom";
 import Genre from "./containers/Genre";
 import Search from "./containers/Search";
 import Person from "./containers/Person";
@@ -19,6 +19,7 @@ ReactGA.initialize(process.env.REACT_APP_GA_KEY);
 ReactGA.pageview(window.location.pathname + window.location.search);
 
 function App() {
+  const history = useHistory();
   console.log("App render outside useEffect");
   const [selected, setSelected] = useState("Popular");
   const [isMobile, setMobile] = useState(null);
@@ -48,11 +49,7 @@ function App() {
     );
   }
   if (errors.length !== 0) {
-    return (
-      <div className="w-screen h-screen text-gray-600">
-        <NotFound title="Opps!" subtitle="Something went wrong..." />
-      </div>
-    );
+    history.push(`${process.env.PUBLIC_URL}/error`);
   }
 
   return (
@@ -159,7 +156,13 @@ function App() {
                 </div>
               )}
             />
-            <Route render={() => <NotFound title="Route not found!" />} />
+            <Route
+              render={() => (
+                <div className="h-screen max-w-7xl mx-auto flex justify-center items-center">
+                  <NotFound title="Route not found!" />
+                </div>
+              )}
+            />
           </Switch>
         </div>
       </div>
