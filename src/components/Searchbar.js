@@ -32,7 +32,6 @@ function Searchbar({ history }) {
     setInput("");
     history.push(`${process.env.PUBLIC_URL}/search/${input}`);
   };
-  console.log("searchbar");
   return (
     <form
       ref={formRef}

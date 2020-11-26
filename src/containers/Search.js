@@ -13,7 +13,6 @@ import Header from "../components/Header";
 function Search({ history, location, match, baseURL, setSelected }) {
   const { query } = match.params;
   const params = queryString.parse(location.search);
-  console.log(params);
   const [state, dispatch] = useReducer(MoviesReducer, {
     loadingMovies: true,
     movies: {},
@@ -28,8 +27,6 @@ function Search({ history, location, match, baseURL, setSelected }) {
     setSelected("");
     getSearchResults(dispatch, query, params.page);
   }, [query, params.page, setSelected]);
-
-  console.log("search");
 
   const { movies, loadingMovies, errors } = state;
 
@@ -57,7 +54,7 @@ function Search({ history, location, match, baseURL, setSelected }) {
     );
   }
   return (
-    <div className="text-gray-600 pt-16 min-h-screen">
+    <div className="text-gray-600 py-16 min-h-screen">
       <Helmet>
         <meta charSet="utf-8" />
         <title>{`${query} Movies`}</title>

@@ -43,7 +43,6 @@ function Person({ location, history, match, baseURL, setSelected }) {
   useEffect(() => {
     getPersonMovies(dispatch, personId, params.page, option.value);
   }, [personId, params.page, option]);
-  console.log("person");
 
   if (errors.length !== 0) {
     history.push(`${process.env.PUBLIC_URL}/error`);
@@ -59,14 +58,14 @@ function Person({ location, history, match, baseURL, setSelected }) {
   };
 
   return (
-    <div className="pt-16 text-gray-700 ">
+    <div className="py-16 text-gray-700 ">
       {loadingPerson ? (
         <div className="h-screen flex justify-center items-center">
           <Loader />
         </div>
       ) : (
         <LazyLoad height={500}>
-          <div className="movie flex flex-col lg:flex-row justify-center items-center gap-10 lg:gap-16 max-w-6xl mx-auto">
+          <div className="movie flex flex-col lg:flex-row justify-center items-center gap-10 lg:gapy-16 max-w-6xl mx-auto">
             <Helmet>
               <meta charSet="utf-8" />
               <title>{`${personDetails.name} - Movie Library`}</title>

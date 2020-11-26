@@ -13,7 +13,6 @@ import Header from "../components/Header";
 function Discover({ history, location, match, baseURL, setSelected }) {
   const category = match.params.name;
   const params = queryString.parse(location.search);
-  console.log("discover");
   const [state, dispatch] = useReducer(MoviesReducer, INITIAL_MOVIES_STATE);
 
   useEffect(() => {
@@ -54,7 +53,7 @@ function Discover({ history, location, match, baseURL, setSelected }) {
   }
 
   return (
-    <div className="text-gray-600 pt-16 min-h-screen flex flex-col justify-center">
+    <div className="text-gray-600 py-16 min-h-screen flex flex-col justify-center">
       <Helmet>
         <meta charSet="utf-8" />
         <title>{`${category} Movies`}</title>

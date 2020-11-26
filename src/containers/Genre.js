@@ -18,7 +18,6 @@ function Genre({ history, location, match, genres, baseURL, setSelected }) {
     value: "popularity.desc",
     label: "Popularity",
   });
-  console.log("genre");
   useEffect(() => {
     scroll.scrollToTop({
       smooth: true,
@@ -43,7 +42,7 @@ function Genre({ history, location, match, genres, baseURL, setSelected }) {
   }
 
   return (
-    <div className="pt-16 text-gray-600 min-h-screen flex flex-col justify-center">
+    <div className="py-16 text-gray-600 min-h-screen flex flex-col justify-center">
       <Helmet>
         <meta charSet="utf-8" />
         <title>{`${genreName} Movies`}</title>

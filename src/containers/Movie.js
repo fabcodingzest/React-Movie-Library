@@ -54,7 +54,6 @@ function Movie({ location, history, match, baseURL, setSelected }) {
   useEffect(() => {
     getRecommendations(dispatch, movieId, params.page);
   }, [movieId, params.page]);
-  console.log("movie");
 
   if (errors.length !== 0) {
     history.push(`${process.env.PUBLIC_URL}/error`);
@@ -70,7 +69,7 @@ function Movie({ location, history, match, baseURL, setSelected }) {
   };
 
   return (
-    <div className="pt-16 text-gray-700 ">
+    <div className="py-16 text-gray-700 ">
       {loadingMovie ? (
         <div className="h-screen flex justify-center items-center">
           <Loader />
@@ -191,7 +190,6 @@ const renderIMDB = (id) => {
   );
 };
 const renderTrailer = (isOpen, setOpen, videos) => {
-  console.log(videos);
   if (videos.length === 0 || !videos) return;
   const { key } = videos.find(
     (video) =>

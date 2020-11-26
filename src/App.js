@@ -20,7 +20,6 @@ ReactGA.pageview(window.location.pathname + window.location.search);
 
 function App() {
   const history = useHistory();
-  console.log("App render outside useEffect");
   const [selected, setSelected] = useState("Popular");
   const [isMobile, setMobile] = useState(null);
   const [appState, appDispatch] = useReducer(
