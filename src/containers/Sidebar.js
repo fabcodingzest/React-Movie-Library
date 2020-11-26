@@ -30,11 +30,13 @@ const Sidebar = ({ genres, selected, setSelected }) => {
           Fab
         </a>
       </p>
-      <img
-        className="w-full px-16 py-6"
-        src={TMDBLogo}
-        alt="The Movie DB Logo"
-      />
+      <a href="https://www.themoviedb.org/" target="_blank" rel="noreferrer">
+        <img
+          className="w-full px-16 py-6"
+          src={TMDBLogo}
+          alt="The Movie DB Logo"
+        />
+      </a>
     </StickyBox>
   );
 };
@@ -50,10 +52,7 @@ const renderStatic = (categories, staticIcons, selected) => {
       key={index}
       to={`${process.env.PUBLIC_URL}/discover/${category}`}
     >
-      <ListItem
-        text={category}
-        icon={staticIcons[index]}
-      />
+      <ListItem text={category} icon={staticIcons[index]} />
     </Link>
   ));
 };

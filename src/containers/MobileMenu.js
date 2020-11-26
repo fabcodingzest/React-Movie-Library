@@ -90,11 +90,13 @@ function MobileMenu({ genres, selected }) {
             Fab
           </a>
         </p>
-        <img
-          className="w-full px-20 sm:px-10 py-6"
-          src={TMDBLogo}
-          alt="The Movie DB Logo"
-        />
+        <a href="https://www.themoviedb.org/" target="_blank" rel="noreferrer">
+          <img
+            className="w-full px-16 sm:px-10 py-6"
+            src={TMDBLogo}
+            alt="The Movie DB Logo"
+          />
+        </a>
       </Menu>
     </>
   );
