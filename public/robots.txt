@@ -1,3 +1,23 @@
 # https://www.robotstxt.org/robotstxt.html
 User-agent: *
 Disallow:
+
+Allow: /wp-content/uploads/*
+
+User-agent: *
+Disallow: /wp-admin*
+Disallow: /wp-login.php
+Disallow: /wp-content*
+Disallow: /*/feed
+Disallow: /*/trackback
+Disallow: /*?
+Disallow: /*.js$
+Disallow: /*.inc$
+Disallow: /*.css$
+Disallow: /category/
+Disallow: /page/
+Disallow: /pages/
+Disallow: /feed/
+Disallow: /feed
+Disallow: /tag/
+Disallow: /archives/ 
