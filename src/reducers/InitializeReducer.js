@@ -8,8 +8,6 @@ function InitializeReducer(state, action) {
       return { ...state, config: action.payload };
     case "app_loaded":
       return { ...state, loadingApp: false };
-    case "fetch_failed":
-      return { ...state, errors: [action.payload.message] };
     default:
       return state;
   }

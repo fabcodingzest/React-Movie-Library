@@ -36,11 +36,11 @@ function App() {
   useEffect(() => {
     changeFromMobile();
     window.addEventListener("resize", changeFromMobile);
-    appInit(appDispatch);
+    appInit(appDispatch, history);
     return () => window.removeEventListener("resize", changeFromMobile);
-  }, [appDispatch]);
+  }, [appDispatch, history]);
 
-  const { config, loadingApp, genres, errors } = appState;
+  const { config, loadingApp, genres } = appState;
 
   if (loadingApp) {
     return (
@@ -48,9 +48,6 @@ function App() {
         <Loader />
       </div>
     );
-  }
-  if (errors.length !== 0) {
-    history.push(`${process.env.PUBLIC_URL}/error`);
   }
 
   return (

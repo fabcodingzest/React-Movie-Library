@@ -2,7 +2,6 @@ export const INITIAL_APP_STATE = {
   loadingApp: true,
   genres: [],
   config: {},
-  errors: [],
 };
 
 export const INITIAL_MOVIES_STATE = {
@@ -25,7 +24,6 @@ export const INITIAL_MOVIE_STATE = {
   movieDetails: {},
   castDetails: {},
   recommendedMovies: {},
-  errors: [],
 };
 
 export const staticCategories = ["Popular", "Top Rated", "Upcoming"];

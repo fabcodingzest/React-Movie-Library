@@ -1,16 +1,16 @@
 import tmdb from "../api/api";
 
-async function getPersonDetails(dispatch, personId) {
+async function getPersonDetails(dispatch, history, personId) {
   try {
     dispatch({ type: "fetch_person_loading" });
     const person = await tmdb.get(`person/${personId}`);
     dispatch({ type: "fetch_person", payload: person.data });
   } catch (error) {
-    dispatch({ type: "person_fetch_failed", payload: error });
+    history.push(`${process.env.PUBLIC_URL}/error`);
   }
 }
 
-async function getPersonMovies(dispatch, personId, page, sort) {
+async function getPersonMovies(dispatch, history, personId, page, sort) {
   try {
     dispatch({ type: "fetch_person_movies_loading" });
     const personMovies = await tmdb.get(`/discover/movie`, {
@@ -25,7 +25,7 @@ async function getPersonMovies(dispatch, personId, page, sort) {
       payload: personMovies.data,
     });
   } catch (error) {
-    dispatch({ type: "person_fetch_failed", payload: error });
+    history.push(`${process.env.PUBLIC_URL}/error`);
   }
 }
 

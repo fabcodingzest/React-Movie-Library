@@ -24,29 +24,18 @@ function Person({ location, history, match, baseURL, setSelected }) {
     value: "popularity.desc",
     label: "Popularity",
   });
-  const {
-    loadingPerson,
-    loadingMovies,
-    personDetails,
-    personMovies,
-    errors,
-  } = state;
+  const { loadingPerson, loadingMovies, personDetails, personMovies } = state;
+  
   useEffect(() => {
     scroll.scrollToTop({
       smooth: true,
       delay: 400,
     });
     setSelected("");
-    getPersonDetails(dispatch, personId);
+    getPersonDetails(dispatch, history, personId);
+    getPersonMovies(dispatch, history, personId, params.page, option.value);
     return () => setImgLoaded(false);
-  }, [personId, setSelected]);
-  useEffect(() => {
-    getPersonMovies(dispatch, personId, params.page, option.value);
-  }, [personId, params.page, option]);
-
-  if (errors.length !== 0) {
-    history.push(`${process.env.PUBLIC_URL}/error`);
-  }
+  }, [personId, setSelected, history, option, params.page]);
 
   const renderBack = () => {
     if (history.action === "PUSH")

@@ -12,8 +12,6 @@ function PersonReducer(state, action) {
         personMovies: action.payload,
         loadingMovies: false,
       };
-    case "person_fetch_failed":
-      return { ...state, errors: [action.payload.message] };
     default:
       return state;
   }

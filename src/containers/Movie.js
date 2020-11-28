@@ -37,7 +37,6 @@ function Movie({ location, history, match, baseURL, setSelected }) {
     recommendedMovies,
     loadingMovie,
     loadingRecommendations,
-    errors,
   } = state;
   const movieId = match.params.id;
 
@@ -47,17 +46,10 @@ function Movie({ location, history, match, baseURL, setSelected }) {
       delay: 400,
     });
     setSelected("");
-    getMovieDetails(dispatch, movieId);
+    getMovieDetails(dispatch, history, movieId);
+    getRecommendations(dispatch, history, movieId, params.page);
     return () => setImgLoaded(false);
-  }, [setSelected, movieId]);
-
-  useEffect(() => {
-    getRecommendations(dispatch, movieId, params.page);
-  }, [movieId, params.page]);
-
-  if (errors.length !== 0) {
-    history.push(`${process.env.PUBLIC_URL}/error`);
-  }
+  }, [setSelected, movieId, params.page, history]);
 
   const renderBack = () => {
     if (history.action === "PUSH")
