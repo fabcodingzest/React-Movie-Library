@@ -47,9 +47,12 @@ function Movie({ location, history, match, baseURL, setSelected }) {
     });
     setSelected("");
     getMovieDetails(dispatch, history, movieId);
-    getRecommendations(dispatch, history, movieId, params.page);
     return () => setImgLoaded(false);
-  }, [setSelected, movieId, params.page, history]);
+  }, [setSelected, movieId, history]);
+
+  useEffect(() => {
+    getRecommendations(dispatch, history, movieId, params.page);
+  }, [movieId, params.page, history]);
 
   const renderBack = () => {
     if (history.action === "PUSH")

@@ -25,7 +25,6 @@ function Person({ location, history, match, baseURL, setSelected }) {
     label: "Popularity",
   });
   const { loadingPerson, loadingMovies, personDetails, personMovies } = state;
-  
   useEffect(() => {
     scroll.scrollToTop({
       smooth: true,
@@ -33,9 +32,12 @@ function Person({ location, history, match, baseURL, setSelected }) {
     });
     setSelected("");
     getPersonDetails(dispatch, history, personId);
-    getPersonMovies(dispatch, history, personId, params.page, option.value);
     return () => setImgLoaded(false);
-  }, [personId, setSelected, history, option, params.page]);
+  }, [personId, setSelected, history]);
+
+  useEffect(() => {
+    getPersonMovies(dispatch, history, personId, params.page, option.value);
+  }, [personId, params.page, option, history]);
 
   const renderBack = () => {
     if (history.action === "PUSH")
@@ -67,9 +69,9 @@ function Person({ location, history, match, baseURL, setSelected }) {
               ) : null}
               <img
                 onLoad={() => setImgLoaded(true)}
-                className={`object-cover rounded-lg shadow-2xl ${
+                className={`object-cover rounded-lg ${
                   !imageloaded ? "hidden" : "block"
-                }`}
+                } ${personDetails.profile_path && "shadow-2xl"}`}
                 src={
                   personDetails.profile_path
                     ? `${baseURL}w500${personDetails.profile_path}`
