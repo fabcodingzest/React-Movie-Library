@@ -27,3 +27,5 @@ export const INITIAL_MOVIE_STATE = {
   recommendedMovies: {},
   errors: [],
 };
+
+export const staticCategories = ["Popular", "Top Rated", "Upcoming"];

@@ -13,6 +13,7 @@ import { INITIAL_APP_STATE } from "./constants/state";
 import InitializeReducer from "./reducers/InitializeReducer";
 import appInit from "./helpers/AppInitializeHelpers";
 import Loader from "./components/Loader";
+import { staticCategories } from "./constants/state";
 import ReactGA from "react-ga";
 
 ReactGA.initialize(process.env.REACT_APP_GA_KEY);
@@ -40,6 +41,7 @@ function App() {
   }, [appDispatch]);
 
   const { config, loadingApp, genres, errors } = appState;
+
   if (loadingApp) {
     return (
       <div className="h-screen w-full flex justify-center items-center my-auto">
@@ -60,6 +62,7 @@ function App() {
       >
         {isMobile ? (
           <MobileMenu
+            staticCategories={staticCategories}
             genres={genres}
             selected={selected}
             setSelected={setSelected}
@@ -67,6 +70,7 @@ function App() {
         ) : (
           <>
             <Sidebar
+              staticCategories={staticCategories}
               genres={genres}
               selected={selected}
               setSelected={setSelected}
@@ -102,6 +106,7 @@ function App() {
                 <Discover
                   {...routeProps}
                   genres={genres}
+                  staticCategories={staticCategories}
                   baseURL={config.secure_base_url}
                   setSelected={setSelected}
                 />
