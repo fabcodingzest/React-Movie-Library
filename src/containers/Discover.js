@@ -1,6 +1,5 @@
 import { useEffect, useReducer } from "react";
 import MovieList from "../components/MovieList";
-import NotFound from "../containers/NotFound";
 import Loader from "../components/Loader";
 import { getDiscoverMovies } from "../helpers/MoviesHelpers";
 import MoviesReducer from "../reducers/MoviesReducer";
