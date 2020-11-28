@@ -23,12 +23,13 @@ function Discover({ history, location, match, baseURL, setSelected }) {
     setSelected(category);
     getDiscoverMovies(
       dispatch,
+      history,
       category.toLowerCase().replace(/\s/, "_"),
       params.page
     );
-  }, [category, params.page, setSelected]);
+  }, [category, history, params.page, setSelected]);
 
-  const { movies, loadingMovies, errors } = state;
+  const { movies, loadingMovies } = state;
 
   if (loadingMovies) {
     return (
@@ -37,20 +38,7 @@ function Discover({ history, location, match, baseURL, setSelected }) {
       </div>
     );
   }
-  if (movies.results.length === 0) {
-    return (
-      <div className="h-screen flex justify-center items-center">
-        <NotFound
-          title="Sorry!"
-          subtitle={`No Results Found for: ${category}`}
-          home
-        />
-      </div>
-    );
-  }
-  if (errors.length !== 0) {
-    history.push(`${process.env.PUBLIC_URL}/error`);
-  }
+
 
   return (
     <div className="text-gray-600 py-16 min-h-screen flex flex-col justify-center">

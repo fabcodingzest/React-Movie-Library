@@ -144,6 +144,19 @@ function App() {
             />
             <Route
               exact
+              path={process.env.PUBLIC_URL + "/404"}
+              component={() => (
+                <div className="h-screen max-w-7xl mx-auto flex justify-center items-center">
+                  <NotFound
+                    title="Oops!"
+                    subtitle="This doesn't exist..."
+                    home
+                  />
+                </div>
+              )}
+            />
+            <Route
+              exact
               path={process.env.PUBLIC_URL + "/error"}
               component={() => (
                 <div className="h-screen max-w-7xl mx-auto flex justify-center items-center">
@@ -156,9 +169,9 @@ function App() {
               )}
             />
             <Route
-              render={() => (
+              component={() => (
                 <div className="h-screen max-w-7xl mx-auto flex justify-center items-center">
-                  <NotFound title="Route not found!" />
+                  <NotFound title="Ooops" subtitle="This doesn't exist!" />
                 </div>
               )}
             />

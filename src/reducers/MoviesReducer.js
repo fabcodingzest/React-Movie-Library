@@ -6,8 +6,6 @@ function MoviesReducer(state, action) {
       return { ...state, movies: action.payload };
     case "fetch_movies_loaded":
       return { ...state, loadingMovies: false };
-    case "movies_fetch_failed":
-      return { ...state, errors: [action.payload.message] };
     default:
       return state;
   }

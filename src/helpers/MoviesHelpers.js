@@ -1,19 +1,27 @@
 import tmdb from "../api/api";
 
-async function getDiscoverMovies(dispatch, name, page) {
+async function getDiscoverMovies(dispatch, history, name, page) {
   dispatch({ type: "fetch_movies_loading" });
   try {
     const movies = await tmdb.get(`/movie/${name}`, {
       params: { page },
     });
-    await dispatch({ type: "fetch_movies", payload: movies.data });
+    console.log(movies);
+    await dispatch({ type: "fetch_movies", payload: movies });
     dispatch({ type: "fetch_movies_loaded" });
   } catch (error) {
-    dispatch({ type: "movies_fetch_failed", payload: error });
+    history.push(`${process.env.PUBLIC_URL}/404`);
   }
 }
 
-async function getGenreMovies(dispatch, genres, genreName, page, sort) {
+async function getGenreMovies(
+  dispatch,
+  history,
+  genres,
+  genreName,
+  page,
+  sort
+) {
   dispatch({ type: "fetch_movies_loading" });
   try {
     let { id } = genres.filter((g) => g.name === genreName)[0];
@@ -23,18 +31,18 @@ async function getGenreMovies(dispatch, genres, genreName, page, sort) {
     await dispatch({ type: "fetch_movies", payload: movies.data });
     dispatch({ type: "fetch_movies_loaded" });
   } catch (error) {
-    dispatch({ type: "movies_fetch_failed", payload: error });
+    history.push(`${process.env.PUBLIC_URL}/404`);
   }
 }
 
-async function getSearchResults(dispatch, query, page) {
+async function getSearchResults(dispatch, history, query, page) {
   dispatch({ type: "fetch_movies_loading" });
   try {
     const movies = await tmdb.get(`search/movie`, { params: { query, page } });
     await dispatch({ type: "fetch_movies", payload: movies.data });
     dispatch({ type: "fetch_movies_loaded" });
   } catch (error) {
-    dispatch({ type: "movies_fetch_failed", payload: error });
+    history.push(`${process.env.PUBLIC_URL}/404`);
   }
 }
 

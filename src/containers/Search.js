@@ -25,10 +25,10 @@ function Search({ history, location, match, baseURL, setSelected }) {
       delay: 400,
     });
     setSelected("");
-    getSearchResults(dispatch, query, params.page);
-  }, [query, params.page, setSelected]);
+    getSearchResults(dispatch, history, query, params.page);
+  }, [query, params.page, setSelected, history]);
 
-  const { movies, loadingMovies, errors } = state;
+  const { movies, loadingMovies } = state;
 
   if (loadingMovies) {
     return (
@@ -36,10 +36,6 @@ function Search({ history, location, match, baseURL, setSelected }) {
         <Loader />
       </div>
     );
-  }
-
-  if (errors.length !== 0) {
-    history.push(`${process.env.PUBLIC_URL}/error`);
   }
 
   if (movies.results.length === 0) {

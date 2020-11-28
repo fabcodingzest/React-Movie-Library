@@ -8,7 +8,6 @@ export const INITIAL_APP_STATE = {
 export const INITIAL_MOVIES_STATE = {
   loadingMovies: true,
   movies: {},
-  errors: [],
 };
 
 export const INITIAL_PERSON_STATE = {

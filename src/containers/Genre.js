@@ -24,10 +24,17 @@ function Genre({ history, location, match, genres, baseURL, setSelected }) {
       delay: 500,
     });
     setSelected(genreName);
-    getGenreMovies(dispatch, genres, genreName, params.page, option.value);
-  }, [genres, params.page, genreName, setSelected, option.value]);
+    getGenreMovies(
+      dispatch,
+      history,
+      genres,
+      genreName,
+      params.page,
+      option.value
+    );
+  }, [genres, params.page, genreName, setSelected, option.value, history]);
 
-  const { movies, loadingMovies, errors } = state;
+  const { movies, loadingMovies } = state;
 
   if (loadingMovies) {
     return (
@@ -35,10 +42,6 @@ function Genre({ history, location, match, genres, baseURL, setSelected }) {
         <Loader />
       </div>
     );
-  }
-
-  if (errors.length !== 0) {
-    history.push(`${process.env.PUBLIC_URL}/error`);
   }
 
   return (
