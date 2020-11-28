@@ -6,8 +6,7 @@ import { Link } from "react-router-dom";
 import ListItem from "../components/ListItem";
 import { faGift, faFire, faChartLine } from "@fortawesome/free-solid-svg-icons";
 
-const Sidebar = ({ genres, selected, setSelected }) => {
-  const staticCategories = ["Popular", "Top Rated", "Upcoming"];
+const Sidebar = ({ genres,staticCategories, selected }) => {
   const staticIcons = [faGift, faFire, faChartLine];
   return (
     <StickyBox className="hidden lg:block border-r-2 sidebar border-gray-300 text-gray-500 min-h-screen">

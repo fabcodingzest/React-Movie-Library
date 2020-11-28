@@ -6,6 +6,7 @@ import { faGift, faFire, faChartLine } from "@fortawesome/free-solid-svg-icons";
 import { slide as Menu } from "react-burger-menu";
 import Searchbar from "../components/Searchbar";
 import MenuItem from "../components/MenuItem";
+
 let styles = {
   bmBurgerButton: {
     display: "none",
@@ -42,8 +43,7 @@ let styles = {
     background: "rgba(0, 0, 0, 0.3)",
   },
 };
-function MobileMenu({ genres, selected }) {
-  const staticCategories = ["Popular", "Top Rated", "Upcoming"];
+function MobileMenu({ genres, staticCategories, selected }) {
   const [isOpen, setOpen] = useState(false);
   const staticIcons = [faGift, faFire, faChartLine];
   const isMenuOpen = function ({ isOpen }) {
