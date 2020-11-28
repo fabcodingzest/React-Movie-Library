@@ -222,7 +222,7 @@ const renderRecommendedMovies = (movies, baseURL, loading) => {
   }
   if (movies.results.length === 0) {
     return (
-      <div className="mt-24 max-w-xl mx-auto flex justify-center items-center">
+      <div className="mt-24 max-w-xl lg:max-w-5xl mx-auto flex justify-center items-center">
         <NotFound title="Sorry!" subtitle="No recommendations found..." />
       </div>
     );

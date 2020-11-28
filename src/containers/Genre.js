@@ -18,6 +18,9 @@ function Genre({ history, location, match, genres, baseURL, setSelected }) {
     value: "popularity.desc",
     label: "Popularity",
   });
+  if (!genres.some((genre) => genre.name === genreName)) {
+    history.push(`${process.env.PUBLIC_URL}/404`);
+  }
   useEffect(() => {
     scroll.scrollToTop({
       smooth: true,
