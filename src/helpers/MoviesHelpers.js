@@ -7,7 +7,7 @@ async function getDiscoverMovies(dispatch, history, name, page) {
       params: { page },
     });
     console.log(movies);
-    await dispatch({ type: "fetch_movies", payload: movies });
+    await dispatch({ type: "fetch_movies", payload: movies.data });
     dispatch({ type: "fetch_movies_loaded" });
   } catch (error) {
     history.push(`${process.env.PUBLIC_URL}/404`);
