@@ -1,15 +1,28 @@
 import tmdb from "../api/api";
 
-async function getDiscoverMovies(dispatch, history, name, page) {
-  try {
-    dispatch({ type: "fetch_movies_loading" });
-    const movies = await tmdb.get(`/movie/${name}`, {
-      params: { page },
-    });
-    await dispatch({ type: "fetch_movies", payload: movies.data });
-    dispatch({ type: "fetch_movies_loaded" });
-  } catch (error) {
-    history.push(`${process.env.PUBLIC_URL}/error`);
+async function getDiscoverMovies(
+  dispatch,
+  staticCategories,
+  history,
+  name,
+  page
+) {
+  if (staticCategories.includes(name)) {
+    try {
+      dispatch({ type: "fetch_movies_loading" });
+      const movies = await tmdb.get(
+        `/movie/${name.toLowerCase().replace(/\s/, "_")}`,
+        {
+          params: { page },
+        }
+      );
+      await dispatch({ type: "fetch_movies", payload: movies.data });
+      dispatch({ type: "fetch_movies_loaded" });
+    } catch (error) {
+      history.push(`${process.env.PUBLIC_URL}/error`);
+    }
+  } else {
+    history.push(`${process.env.PUBLIC_URL}/404`);
   }
 }
 
