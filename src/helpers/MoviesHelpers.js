@@ -1,8 +1,8 @@
 import tmdb from "../api/api";
 
 async function getDiscoverMovies(dispatch, history, name, page) {
-  dispatch({ type: "fetch_movies_loading" });
   try {
+    dispatch({ type: "fetch_movies_loading" });
     const movies = await tmdb.get(`/movie/${name}`, {
       params: { page },
     });

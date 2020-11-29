@@ -9,12 +9,22 @@ import queryString from "query-string";
 import { Helmet } from "react-helmet";
 import Header from "../components/Header";
 
-function Discover({ history, location, match, baseURL, setSelected }) {
+function Discover({
+  staticCategories,
+  history,
+  location,
+  match,
+  baseURL,
+  setSelected,
+}) {
   const category = match.params.name;
   const params = queryString.parse(location.search);
   const [state, dispatch] = useReducer(MoviesReducer, INITIAL_MOVIES_STATE);
 
   useEffect(() => {
+    if (!staticCategories.some((staticCat) => staticCat === category)) {
+      return history.push(`${process.env.PUBLIC_URL}/404`);
+    }
     scroll.scrollToTop({
       smooth: true,
       delay: 400,
@@ -26,7 +36,7 @@ function Discover({ history, location, match, baseURL, setSelected }) {
       category.toLowerCase().replace(/\s/, "_"),
       params.page
     );
-  }, [category, history, params.page, setSelected]);
+  }, [category, history, params.page, setSelected, staticCategories]);
 
   const { movies, loadingMovies } = state;
 
@@ -37,7 +47,6 @@ function Discover({ history, location, match, baseURL, setSelected }) {
       </div>
     );
   }
-
 
   return (
     <div className="text-gray-600 py-16 min-h-screen flex flex-col justify-center">

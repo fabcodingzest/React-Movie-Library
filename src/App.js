@@ -13,7 +13,7 @@ import { INITIAL_APP_STATE } from "./constants/state";
 import InitializeReducer from "./reducers/InitializeReducer";
 import appInit from "./helpers/AppInitializeHelpers";
 import Loader from "./components/Loader";
-import { staticCategories } from "./constants/state";
+import { staticCategories as staticCat } from "./constants/state";
 import ReactGA from "react-ga";
 
 ReactGA.initialize(process.env.REACT_APP_GA_KEY);
@@ -23,6 +23,7 @@ function App() {
   const history = useHistory();
   const [selected, setSelected] = useState("Popular");
   const [isMobile, setMobile] = useState(null);
+  const [staticCategories] = useState(staticCat);
   const [appState, appDispatch] = useReducer(
     InitializeReducer,
     INITIAL_APP_STATE
