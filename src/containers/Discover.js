@@ -22,7 +22,7 @@ function Discover({
   const [state, dispatch] = useReducer(MoviesReducer, INITIAL_MOVIES_STATE);
 
   useEffect(() => {
-    if (!staticCategories.some((staticCat) => staticCat === category)) {
+    if (!staticCategories.includes(category)) {
       return history.push(`${process.env.PUBLIC_URL}/404`);
     }
     scroll.scrollToTop({
@@ -37,7 +37,6 @@ function Discover({
       params.page
     );
   }, [category, history, params.page, setSelected, staticCategories]);
-
   const { movies, loadingMovies } = state;
 
   if (loadingMovies) {
