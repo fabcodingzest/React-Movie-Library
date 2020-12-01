@@ -1,12 +1,10 @@
 # React Movie Library
 
+I made this library to practice my react skills and to get a better understanding of state management in React.
+
 ## Check it out live here - [https://fabmovielibrary.netlify.app](https://fabmovielibrary.netlify.app)
 
-<div style="box-shadow: 2px 2px 5px gray">
-    <img src="./public/preview.png" alt="React Movie Library Preview">
-</div>
-
-I made this library to practice my react skills and to get a better understanding of state management in React.
+![Fab Movie Library Preview](./public/preview.png)
 
 ### Techs Used
 
