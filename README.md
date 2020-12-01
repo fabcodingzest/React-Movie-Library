@@ -1,8 +1,8 @@
-# Check it out live here - [https://fabmovielibrary.netlify.app](https://fabmovielibrary.netlify.app)
+# React Movie Library
 
-![Fab Movie Library Screenshot](./public/preview.png)
+## Check it out live here - [https://fabmovielibrary.netlify.app](https://fabmovielibrary.netlify.app)
 
-## React Movie Library
+<img src="./public/preview.png" alt="Fab Movie Library Preview" style="border-radius: 5px; box-shadow: 0 0 8px gray;">
 
 I made this library to practice my react skills and to get a better understanding of state management in React.
 
@@ -47,5 +47,7 @@ ReactGA.pageview(window.location.pathname + window.location.search);
 [The Movie DB API](https://www.themoviedb.org/documentation/api) was used for the project, you can sign up for a free account and use it.
 
 <div style="width:100px; height=100px; margin: 5px;">
-    <img src="./src/assets/TMDBLogoDark.svg">
+    <a href="https://www.themoviedb.org/documentation/api" target="_blank">
+        <img src="./src/assets/TMDBLogoDark.svg" alt="The Movie DB API logo">
+    </a>
 </div>
