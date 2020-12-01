@@ -1,70 +1,51 @@
-# Getting Started with Create React App
+# Check it out live here - [https://fabmovielibrary.netlify.app](https://fabmovielibrary.netlify.app)
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+![Fab Movie Library Screenshot](./public/preview.png)
 
-## Available Scripts
+## React Movie Library
 
-In the project directory, you can run:
+I made this library to practice my react skills and to get a better understanding of state management in React.
 
-### `yarn start`
+### Techs Used
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+- React (UseReducer Hook for state management)
+- Tailwind
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+### Features of the Movie Library
 
-### `yarn test`
+- You can discover Popular, top-rated and upcoming movies, browse through different genres of movies to find the one you like.
+- Search for your favorite movies.
+- Get detailed information for a movie and it's cast.
+- Also, you can watch the trailer of the movie.
+- Sort out the movies according to vote, popularity, etc.
+- Get recommendations for yourself based on the movie you are looking at.
+- Visit websites and IMDB profiles of the movie and cast members.
+- Get the biography of your favorite cast member and also see other movies they appeared in and so much more!
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### Want to run this on your local machine?
 
-### `yarn build`
+- Clone the repo or download the ZIP file.
+- Add all the dependencies using `yarn add`. (I have used yarn for development but you can do `npm install` too).
+- Add a `.env` file with the following keys (Get your TMDB API from here after signing up and add GA key only if you are integrating Google analytics.)
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+```
+REACT_APP_TMDB_API=your-tmdb-api-key
+REACT_APP_GA_KEY=your-google-analytics-tracking-code
+```
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+**In case you do not want to use Google Analytics, just comment out the following two lines from App.js in `/src ` directory.**
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+```
+ReactGA.initialize(process.env.REACT_APP_GA_KEY);
+ReactGA.pageview(window.location.pathname + window.location.search);
+```
 
-### `yarn eject`
+- Now run the command `yarn start` to run the application. (Alternatively, if you are using **npm** run `npm start`).
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+### API Used
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+[The Movie DB API](https://www.themoviedb.org/documentation/api) was used for the project, you can sign up for a free account and use it.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `yarn build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+<div style="width:100px; height=100px; margin: 5px;">
+    <img src="./src/assets/TMDBLogoDark.svg">
+</div>
