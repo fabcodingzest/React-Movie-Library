@@ -57,4 +57,4 @@ Please feel free to make a pull request by creating an issue if you feel like th
 
 ### Author
 
-**[Fab]("https://github.com/fabcodingzest)** - _A web developer_
+**[Fab](https://github.com/fabcodingzest)** - _A web developer_
