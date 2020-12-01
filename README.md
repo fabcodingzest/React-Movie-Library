@@ -46,8 +46,8 @@ ReactGA.pageview(window.location.pathname + window.location.search);
 
 [The Movie DB API](https://www.themoviedb.org/documentation/api) was used for the project, you can sign up for a free account and use it.
 
-<div style="width:100px; height=100px; margin: 5px;">
+<div>
     <a href="https://www.themoviedb.org/documentation/api" target="_blank">
-        <img src="./src/assets/TMDBLogoDark.svg" alt="The Movie DB API logo">
+        <img src="./src/assets/TMDBLogoDark.svg" alt="The Movie DB API logo"  style="width:100px; height=100px; margin: 5px;">
     </a>
 </div>
