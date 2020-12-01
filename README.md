@@ -2,14 +2,17 @@
 
 ## Check it out live here - [https://fabmovielibrary.netlify.app](https://fabmovielibrary.netlify.app)
 
-<img src="./public/preview.png" alt="Fab Movie Library Preview" style="border-radius: 5px; box-shadow: 0 0 8px gray;">
+<div style="box-shadow: 2px 2px 5px gray">
+    <img src="./public/preview.png" alt="React Movie Library Preview">
+</div>
 
 I made this library to practice my react skills and to get a better understanding of state management in React.
 
 ### Techs Used
 
-- React (UseReducer Hook for state management)
-- Tailwind
+- [React JS](https://reactjs.org/)
+- [React Router](https://github.com/ReactTraining/react-router)
+- [Tailwind](https://tailwindcss.com/)
 
 ### Features of the Movie Library
 
@@ -46,4 +49,14 @@ ReactGA.pageview(window.location.pathname + window.location.search);
 
 [The Movie DB API](https://www.themoviedb.org/documentation/api) was used for the project, you can sign up for a free account and use it.
 
-<img src="./src/assets/TMDBLogoDark.svg" alt="The Movie DB API logo"  height="50">
+<a target="_blank" href="https://www.themoviedb.org/documentation/api">
+    <img src="./src/assets/TMDBLogoDark.svg" alt="The Movie DB API logo"  height="50">
+</a>
+
+### Contribution
+
+Please feel free to make a pull request by creating an issue if you feel like there is something which can be improved.
+
+### Author
+
+**[Fab]("https://github.com/fabcodingzest)** - _A web developer_
