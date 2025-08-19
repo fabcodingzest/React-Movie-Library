@@ -2,7 +2,7 @@
 
 I made this library to practice my react skills and to get a better understanding of state management in React.
 
-## Check it out live here - [https://fabmovielibrary.netlify.app](https://fabmovielibrary.netlify.app)
+## Check it out live here - [https://movielibriz.netlify.app/](https://movielibriz.netlify.app/)
 
 ![Fab Movie Library Preview](./public/preview.png)
 
